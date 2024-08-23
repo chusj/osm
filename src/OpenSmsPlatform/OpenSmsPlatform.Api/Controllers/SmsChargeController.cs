@@ -25,7 +25,7 @@ namespace OpenSmsPlatform.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<List<OspAccCharge>> GetCharges(string accId)
+        public async Task<List<OspAccCharge>> GetCharge(string accId)
         {
             if (string.IsNullOrWhiteSpace(accId))
             {
@@ -40,7 +40,7 @@ namespace OpenSmsPlatform.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<string> AddAccout(string accId, int amount, string remarks)
+        public async Task<string> AddCharge(string accId, int amount, string remarks)
         {
             if (string.IsNullOrWhiteSpace(accId) || amount < 1)
             {

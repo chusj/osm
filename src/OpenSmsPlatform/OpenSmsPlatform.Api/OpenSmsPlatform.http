@@ -4,3 +4,7 @@ GET {{opensmsplatform_HostAddress}}/api/Test/Index
 Accept: application/json
 
 ###
+
+GET {{opensmsplatform_HostAddress}}/api/SmsAccount/GetAccount?name=Ï£ºÍ
+
+###

@@ -19,7 +19,7 @@ namespace OpenSmsPlatform.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<List<OspAccount>> GetAccout(string name)
+        public async Task<List<OspAccount>> GetAccount(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -39,7 +39,7 @@ namespace OpenSmsPlatform.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<OspAccount> AddAccout(string name, string smsSuffix,string remarks)
+        public async Task<OspAccount> AddAccount(string name, string smsSuffix,string remarks)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
