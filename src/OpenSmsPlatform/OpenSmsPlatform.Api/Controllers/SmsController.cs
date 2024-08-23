@@ -1,0 +1,176 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using OpenSmsPlatform.Api.Extensions;
+using OpenSmsPlatform.IService;
+using OpenSmsPlatform.Model;
+using OpenSmsPlatform.Repository.UnitOfWorks;
+
+namespace OpenSmsPlatform.Api.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class SmsController : ControllerBase
+    {
+        private readonly IOspAccountService _accountService;
+        private readonly IUnitOfWorkManage _unitOfWorkManage;
+
+        public SmsController(IOspAccountService accountService,
+            IUnitOfWorkManage unitOfWorkManage)
+        {
+            _accountService = accountService;
+            _unitOfWorkManage = unitOfWorkManage;
+        }
+
+        public async Task<ApiResponse> Send([FromBody] SmsRequest request)
+        {
+            ApiResponse response = new ApiResponse();
+
+            try
+            {
+                //1.检查短信参数
+                request.Mobiles = request.Mobiles.Where(p => p.Length == 11).ToList();  //过滤手机号
+                var turple = CheckSmsParam(request);
+                if (!turple.enable)
+                {
+                    response.Message = turple.msg;
+                    return response;
+                }
+
+                //2.验证token
+                if (!await _accountService.ValidAccount(request.AccId, request.TimeStamp, request.Signature))
+                {
+                    response.Code = 401;
+                    response.Message = "Signature Error";
+                    return response;
+                }
+
+                //3.检查账号
+                int UseCounts = CalcUseCounts(request.Mobiles.Count, request.Contents.Length);
+                (bool enable, string msg, OspAccount account) acountTuple = await CheckAccount(request, UseCounts);
+                if (!acountTuple.enable)
+                {
+                    response.Message = turple.msg;
+                    return response;
+                }
+                OspAccount account = acountTuple.account;
+
+                //4.发送短信
+                response = SmsApi.Send(request.Mobiles, request.Contents);
+                if (response.Code == 200)
+                {
+                    //6. 扣费、保存记录(事务提交)
+                    using var uow = _unitOfWorkManage.CreateUnitOfWork();
+                    account.AccCounts = account.AccCounts - UseCounts;
+                    //bool flag = await _message.AddRecordsAndUpdateBalance(AppendList(request, smsAccount.Id), smsAccount);
+
+                    uow.Commit();
+
+                    //7.最后返回
+                    response.Message = "发送成功";
+                }
+                return response;
+
+
+            }
+            catch (Exception ex)
+            {
+                response.Code = 500;
+                response.Message = $"内部服务器错误: {ex.Message}";
+                return response;
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        /// 检查短信参数
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>元组</returns>
+        private (bool enable, string msg) CheckSmsParam(SmsRequest request)
+        {
+            (bool enable, string msg) checkTurple = (false, string.Empty);
+
+            if (string.IsNullOrEmpty(request.AccId.Trim())
+                || string.IsNullOrEmpty(request.Contents.Trim())
+                || string.IsNullOrEmpty(request.SmsSuffix.Trim())
+                || string.IsNullOrEmpty(request.Signature.Trim())
+                || request.Mobiles.Count == 0)
+            {
+                checkTurple.msg = "参数缺失";
+            }
+            else if (!request.Contents.Contains(request.Code) && !string.IsNullOrEmpty(request.Code))
+            {
+                checkTurple.msg = "内容不包含验证码";
+            }
+            else if (!string.IsNullOrWhiteSpace(request.Contents) && !request.Contents.Contains(request.Signature))
+            {
+                checkTurple.msg = "内容缺少短信后缀";
+            }
+            else if (request.Mobiles.Count > 1000)
+            {
+                checkTurple.msg = "手机号码不可超过1000个";
+            }
+            else if (request.Contents.Length > 1000)
+            {
+                checkTurple.msg = "内容不可超过1000个字符";
+            }
+            else { checkTurple.enable = true; }
+
+            return checkTurple;
+        }
+
+        /// <summary>
+        /// 计算使用条数
+        /// </summary>
+        /// <param name="mobileCounts">手机号码数目</param>
+        /// <param name="contentLength">内容长度</param>
+        /// <returns></returns>
+        private int CalcUseCounts(int mobileCounts, int contentLength)
+        {
+            int needCount = mobileCounts;              //小于70个字符，直接返回手机号码数
+            if (contentLength > 70)
+            {
+                int SingleCount = contentLength / 67;  //先取商
+                if ((contentLength % 67) > 0)          //再取余，有余数需要+1
+                {
+                    SingleCount = SingleCount + 1;
+                }
+                needCount = SingleCount * mobileCounts;
+            }
+
+            return needCount;
+        }
+
+        /// <summary>
+        /// 检查账号
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="useCounts"></param>
+        /// <returns></returns>
+        private async Task<(bool enable, string msg, OspAccount account)> CheckAccount(SmsRequest request, int useCounts)
+        {
+            (bool enable, string msg, OspAccount account) checkTurple = (false, string.Empty, null);
+
+            OspAccount smsAccount = await _accountService.QueryOspAcount(request.AccId, request.SmsSuffix);
+            if (smsAccount == null)
+            {
+                checkTurple.msg = "签名错误";
+            }
+            if (smsAccount.IsEnable == 2)
+            {
+                checkTurple.msg = "账号停用";
+            }
+            else if (smsAccount.AccCounts < useCounts)
+            {
+                checkTurple.msg = "余额不足";
+            }
+            else
+            {
+                checkTurple.enable = true;
+                checkTurple.account = smsAccount;
+            }
+
+            return checkTurple;
+        }
+    }
+}

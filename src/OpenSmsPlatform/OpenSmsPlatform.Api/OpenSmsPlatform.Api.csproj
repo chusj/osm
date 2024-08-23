@@ -9,6 +9,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="smsapi.lianlu" Version="1.0.0" />
+		<PackageReference Include="smsapi.zhutong" Version="1.0.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
 		<PackageReference Include="SuperShortLink.Api" Version="1.2.1" />
 	</ItemGroup>
