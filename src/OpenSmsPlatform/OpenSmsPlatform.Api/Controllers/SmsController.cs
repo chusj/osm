@@ -54,7 +54,7 @@ namespace OpenSmsPlatform.Api.Controllers
                 OspAccount account = acountTuple.account;
 
                 //4.发送短信
-                response = SmsApi.Send(request.Mobiles, request.Contents);
+                //response = api.Send(request.Mobiles, request.Contents, request.SmsSuffix);
                 if (response.Code == 200)
                 {
                     //6. 扣费、保存记录(事务提交)
