@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
-using opensmsplatform.Common;
+using OpenSmsPlatform.Common;
 using SqlSugar;
 using System.Collections.Concurrent;
 using System.Reflection;
 
-namespace opensmsplatform.Repository.UnitOfWorks
+namespace OpenSmsPlatform.Repository.UnitOfWorks
 {
     public class UnitOfWorkManage : IUnitOfWorkManage
     {

@@ -4,11 +4,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
-using opensmsplatform.Common.HttpContextUser;
-using opensmsplatform.Common.Option;
+using OpenSmsPlatform.Common.HttpContextUser;
+using OpenSmsPlatform.Common.Option;
 using System.Reflection;
 
-namespace opensmsplatform.Common.Core
+namespace OpenSmsPlatform.Common.Core
 {
     public class App
     {

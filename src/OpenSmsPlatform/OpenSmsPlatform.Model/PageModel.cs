@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace opensmsplatform.Model
+namespace OpenSmsPlatform.Model
 {
     /// <summary>
     /// 通用分页信息类

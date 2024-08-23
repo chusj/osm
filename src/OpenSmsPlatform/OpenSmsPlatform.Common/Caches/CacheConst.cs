@@ -1,4 +1,4 @@
-﻿namespace opensmsplatform.Common.Caches
+﻿namespace OpenSmsPlatform.Common.Caches
 {
     /// <summary>
     /// 缓存常量

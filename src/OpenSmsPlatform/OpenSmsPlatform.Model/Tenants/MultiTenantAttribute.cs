@@ -1,4 +1,4 @@
-﻿namespace opensmsplatform.Model.Tenants
+﻿namespace OpenSmsPlatform.Model.Tenants
 {
     /// <summary>
     /// 标识 多租户 的业务表 <br/>

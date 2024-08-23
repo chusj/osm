@@ -1,9 +1,9 @@
-﻿using opensmsplatform.Common.Core;
-using opensmsplatform.Model;
-using opensmsplatform.Model.Tenants;
+﻿using OpenSmsPlatform.Common.Core;
+using OpenSmsPlatform.Model;
+using OpenSmsPlatform.Model.Tenants;
 using SqlSugar;
 
-namespace opensmsplatform.Common.DB
+namespace OpenSmsPlatform.Common.DB
 {
     public class RepositorySetting
     {

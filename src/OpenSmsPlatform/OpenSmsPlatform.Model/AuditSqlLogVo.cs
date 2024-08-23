@@ -1,4 +1,4 @@
-﻿namespace opensmsplatform.Model
+﻿namespace OpenSmsPlatform.Model
 {
     public class AuditSqlLogVo
     {

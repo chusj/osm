@@ -1,4 +1,4 @@
-﻿namespace opensmsplatform.Common.DB
+﻿namespace OpenSmsPlatform.Common.DB
 {
     public class MainDb
     {

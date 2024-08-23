@@ -1,4 +1,4 @@
-﻿namespace opensmsplatform.Model.Tenants
+﻿namespace OpenSmsPlatform.Model.Tenants
 {
     /// <summary>
     /// 业务数据 <br/>

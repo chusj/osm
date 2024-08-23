@@ -3,15 +3,14 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using opensmsplatform.Common;
-using opensmsplatform.Common.Core;
-using opensmsplatform.Common.HttpContextUser;
-using opensmsplatform.Extension;
-using opensmsplatform.Extensions;
+using OpenSmsPlatform.Common;
+using OpenSmsPlatform.Common.Core;
+using OpenSmsPlatform.Common.HttpContextUser;
+using OpenSmsPlatform.Extension;
+using OpenSmsPlatform.Extensions;
 using Serilog;
-using System.Collections.Generic;
 
-namespace opensmsplatform
+namespace OpenSmsPlatform
 {
     public class Program
     {

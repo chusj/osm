@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace opensmsplatform.Api.Controllers
+namespace OpenSmsPlatform.Api.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using SqlSugar;
 
-namespace opensmsplatform.Repository.UnitOfWorks
+namespace OpenSmsPlatform.Repository.UnitOfWorks
 {
     /// <summary>
     /// 工作单元，用于控制事务自动提交、回滚

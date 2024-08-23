@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace opensmsplatform.Extensions
+namespace OpenSmsPlatform.Extensions
 {
     public class AutoMapperConfig
     {

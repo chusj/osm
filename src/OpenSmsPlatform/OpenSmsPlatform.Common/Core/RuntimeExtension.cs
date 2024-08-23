@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
 
-namespace opensmsplatform.Common.Core
+namespace OpenSmsPlatform.Common.Core
 {
     public static class RuntimeExtension
     {

@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Text;
 
-namespace opensmsplatform.Common.Helper
+namespace OpenSmsPlatform.Common.Helper
 {
     public class SerializeHelper
     {

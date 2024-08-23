@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 
-namespace opensmsplatform.Common.Caches
+namespace OpenSmsPlatform.Common.Caches
 {
     public interface ICaching
     {

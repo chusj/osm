@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using opensmsplatform.Common.Core;
+using OpenSmsPlatform.Common.Core;
 using Serilog;
 
-namespace opensmsplatform.Extension
+namespace OpenSmsPlatform.Extension
 {
     public static class ApplicationSetup
     {

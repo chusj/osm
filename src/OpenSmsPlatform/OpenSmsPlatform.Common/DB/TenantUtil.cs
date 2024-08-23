@@ -1,9 +1,9 @@
-﻿using opensmsplatform.Model;
-using opensmsplatform.Model.Tenants;
+﻿using OpenSmsPlatform.Model;
+using OpenSmsPlatform.Model.Tenants;
 using SqlSugar;
 using System.Reflection;
 
-namespace opensmsplatform.Common.DB
+namespace OpenSmsPlatform.Common.DB
 {
     public static class TenantUtil
     {

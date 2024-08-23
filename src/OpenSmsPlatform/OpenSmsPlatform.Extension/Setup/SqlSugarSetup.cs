@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using opensmsplatform.Common;
-using opensmsplatform.Common.DB;
+using OpenSmsPlatform.Common;
+using OpenSmsPlatform.Common.DB;
 using SqlSugar;
 using System.Text.RegularExpressions;
 
-namespace opensmsplatform.Extension
+namespace OpenSmsPlatform.Extension
 {
     public static class SqlSugarSetup
     {

@@ -1,4 +1,4 @@
-﻿namespace opensmsplatform.Common
+﻿namespace OpenSmsPlatform.Common
 {
     public class AOPLogInfo
     {

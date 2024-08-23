@@ -1,10 +1,10 @@
 ﻿using Castle.DynamicProxy;
 using Microsoft.Extensions.Logging;
-using opensmsplatform.Common.Transcation;
-using opensmsplatform.Repository.UnitOfWorks;
+using OpenSmsPlatform.Common.Transcation;
+using OpenSmsPlatform.Repository.UnitOfWorks;
 using System.Reflection;
 
-namespace opensmsplatform.Extension
+namespace OpenSmsPlatform.Extension
 {
     /// <summary>
     /// 事务拦截器， 继承IInterceptor接口

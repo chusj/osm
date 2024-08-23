@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
-namespace opensmsplatform.Common.HttpContextUser
+namespace OpenSmsPlatform.Common.HttpContextUser
 {
     public class AspNetUser : IUser
     {

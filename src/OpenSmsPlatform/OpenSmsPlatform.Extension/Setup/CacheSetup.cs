@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using opensmsplatform.Common.Caches;
-using opensmsplatform.Common.Core;
-using opensmsplatform.Common.Option;
-using opensmsplatform.Extension.Redis;
+using OpenSmsPlatform.Common.Caches;
+using OpenSmsPlatform.Common.Core;
+using OpenSmsPlatform.Common.Option;
+using OpenSmsPlatform.Extension.Redis;
 using StackExchange.Redis;
 
-namespace opensmsplatform.Extension
+namespace OpenSmsPlatform.Extension
 {
     public static class CacheSetup
     {

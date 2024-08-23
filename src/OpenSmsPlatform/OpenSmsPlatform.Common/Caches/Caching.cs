@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System.Text;
 
-namespace opensmsplatform.Common.Caches
+namespace OpenSmsPlatform.Common.Caches
 {
     public class Caching : ICaching
     {

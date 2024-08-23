@@ -1,7 +1,7 @@
-﻿using opensmsplatform.Model.Tenants;
+﻿using OpenSmsPlatform.Model.Tenants;
 using SqlSugar;
 
-namespace opensmsplatform.Model
+namespace OpenSmsPlatform.Model
 {
     /// <summary>
     /// 系统租户表 <br/>

@@ -1,6 +1,6 @@
 ﻿using SqlSugar;
 
-namespace opensmsplatform.Model.Tenants
+namespace OpenSmsPlatform.Model.Tenants
 {
     /// <summary>
     /// 租户模型接口

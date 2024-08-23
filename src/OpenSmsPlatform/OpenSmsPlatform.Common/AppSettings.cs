@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
 
-namespace opensmsplatform.Common
+namespace OpenSmsPlatform.Common
 {
     /// <summary>
     /// appsetting.json操作类

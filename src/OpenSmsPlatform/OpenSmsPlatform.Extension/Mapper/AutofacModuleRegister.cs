@@ -1,12 +1,12 @@
 ﻿using Autofac;
 using Autofac.Extras.DynamicProxy;
-using opensmsplatform.IService;
-using opensmsplatform.Repository;
-using opensmsplatform.Repository.UnitOfWorks;
-using opensmsplatform.Service;
+using OpenSmsPlatform.IService;
+using OpenSmsPlatform.Repository;
+using OpenSmsPlatform.Repository.UnitOfWorks;
+using OpenSmsPlatform.Service;
 using System.Reflection;
 
-namespace opensmsplatform.Extension
+namespace OpenSmsPlatform.Extension
 {
     public class AutofacModuleRegister : Autofac.Module
     {

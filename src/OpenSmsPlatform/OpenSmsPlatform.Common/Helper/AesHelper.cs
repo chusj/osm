@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace opensmsplatform.Common.Helper
+namespace OpenSmsPlatform.Common.Helper
 {
     /// <summary>
     /// AES加密工具（对称加密）

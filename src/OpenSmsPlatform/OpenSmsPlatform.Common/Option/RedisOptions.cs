@@ -1,4 +1,4 @@
-﻿namespace opensmsplatform.Common.Option
+﻿namespace OpenSmsPlatform.Common.Option
 {
     /// <summary>
     /// Redis缓存配置选项

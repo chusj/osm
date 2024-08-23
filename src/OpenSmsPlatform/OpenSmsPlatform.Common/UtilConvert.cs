@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace opensmsplatform.Common
+namespace OpenSmsPlatform.Common
 {
     /// <summary>
     /// 转换工具

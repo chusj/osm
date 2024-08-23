@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
-using opensmsplatform.Model;
-using opensmsplatform.Repository.UnitOfWorks;
+using OpenSmsPlatform.Model;
+using OpenSmsPlatform.Repository.UnitOfWorks;
 using SqlSugar;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace opensmsplatform.Repository
+namespace OpenSmsPlatform.Repository
 {
     /// <summary>
     /// 基础仓储实现

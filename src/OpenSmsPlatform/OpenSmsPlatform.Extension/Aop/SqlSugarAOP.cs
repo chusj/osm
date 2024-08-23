@@ -1,8 +1,8 @@
-﻿using opensmsplatform.Common;
+﻿using OpenSmsPlatform.Common;
 using Serilog;
 using SqlSugar;
 
-namespace opensmsplatform.Extension
+namespace OpenSmsPlatform.Extension
 {
     public static class SqlSugarAOP
     {

@@ -1,8 +1,8 @@
-﻿using opensmsplatform.Model;
+﻿using OpenSmsPlatform.Model;
 using SqlSugar;
 using System.Linq.Expressions;
 
-namespace opensmsplatform.Repository
+namespace OpenSmsPlatform.Repository
 {
     /// <summary>
     /// 基础仓储接口

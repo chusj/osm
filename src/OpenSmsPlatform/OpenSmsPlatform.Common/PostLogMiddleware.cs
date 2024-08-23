@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Serilog;
 
-namespace opensmsplatform.Common
+namespace OpenSmsPlatform.Common
 {
     public class PostLogMiddleware
     {

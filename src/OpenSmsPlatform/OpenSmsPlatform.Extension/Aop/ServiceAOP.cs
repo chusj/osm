@@ -1,9 +1,9 @@
 ﻿using Castle.DynamicProxy;
 using Newtonsoft.Json;
-using opensmsplatform.Common;
+using OpenSmsPlatform.Common;
 using System.Reflection;
 
-namespace opensmsplatform.Extension
+namespace OpenSmsPlatform.Extension
 {
     /// <summary>
     /// 拦截器AOP，继承自IInterceptor接口

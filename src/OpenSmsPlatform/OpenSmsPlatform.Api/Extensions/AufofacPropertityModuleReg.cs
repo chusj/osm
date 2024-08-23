@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Microsoft.AspNetCore.Mvc;
 
-namespace opensmsplatform.Extensions
+namespace OpenSmsPlatform.Extensions
 {
     /// <summary>
     /// Autofac 属性注册

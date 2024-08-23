@@ -1,6 +1,6 @@
 ﻿using SqlSugar;
 
-namespace opensmsplatform.Model
+namespace OpenSmsPlatform.Model
 {
     public abstract class BaseLog : RootEntityTkey<long>
     {

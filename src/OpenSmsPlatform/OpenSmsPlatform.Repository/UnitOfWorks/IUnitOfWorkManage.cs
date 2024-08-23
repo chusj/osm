@@ -1,7 +1,7 @@
 ﻿using SqlSugar;
 using System.Reflection;
 
-namespace opensmsplatform.Repository.UnitOfWorks
+namespace OpenSmsPlatform.Repository.UnitOfWorks
 {
     public interface IUnitOfWorkManage
     {

@@ -1,7 +1,7 @@
 ﻿using Serilog.Context;
 using SqlSugar;
 
-namespace opensmsplatform.Common
+namespace OpenSmsPlatform.Common
 {
     /// <summary>
     /// 日志上下文拓展

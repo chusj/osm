@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using opensmsplatform.IService;
-using opensmsplatform.Model;
-using opensmsplatform.Repository;
+using OpenSmsPlatform.IService;
+using OpenSmsPlatform.Model;
+using OpenSmsPlatform.Repository;
 using SqlSugar;
 using System.Linq.Expressions;
 
-namespace opensmsplatform.Service
+namespace OpenSmsPlatform.Service
 {
     /// <summary>
     /// 基础服务实现

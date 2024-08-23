@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using opensmsplatform.Common.Option;
+using OpenSmsPlatform.Common.Option;
 
-namespace opensmsplatform.Extension
+namespace OpenSmsPlatform.Extension
 {
     public static class AllOptionRegister
     {

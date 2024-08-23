@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Serilog;
 
-namespace opensmsplatform.Common.Helper
+namespace OpenSmsPlatform.Common.Helper
 {
     public class IpHelper
     {

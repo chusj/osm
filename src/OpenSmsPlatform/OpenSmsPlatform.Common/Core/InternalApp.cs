@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 
-namespace opensmsplatform.Common.Core
+namespace OpenSmsPlatform.Common.Core
 {
     /// <summary>
     /// 内部只用于初始化使用

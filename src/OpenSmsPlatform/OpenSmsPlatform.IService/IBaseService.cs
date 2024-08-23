@@ -1,8 +1,8 @@
-﻿using opensmsplatform.Model;
+﻿using OpenSmsPlatform.Model;
 using SqlSugar;
 using System.Linq.Expressions;
 
-namespace opensmsplatform.IService
+namespace OpenSmsPlatform.IService
 {
     /// <summary>
     /// 基础服务接口

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace opensmsplatform.Model.Tenants
+namespace OpenSmsPlatform.Model.Tenants
 {
     /// <summary>
     /// 租户隔离方案

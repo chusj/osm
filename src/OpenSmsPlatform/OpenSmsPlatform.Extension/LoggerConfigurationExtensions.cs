@@ -1,9 +1,9 @@
-﻿using opensmsplatform.Common;
+﻿using OpenSmsPlatform.Common;
 using Serilog;
 using Serilog.Events;
 using Serilog.Filters;
 
-namespace opensmsplatform.Extension
+namespace OpenSmsPlatform.Extension
 {
     /// <summary>
     /// 日志配置扩展

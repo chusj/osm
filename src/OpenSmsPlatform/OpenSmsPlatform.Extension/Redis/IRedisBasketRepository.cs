@@ -1,7 +1,7 @@
 ﻿using StackExchange.Redis;
 using System.ComponentModel;
 
-namespace opensmsplatform.Extension.Redis
+namespace OpenSmsPlatform.Extension.Redis
 {
     /// <summary>
     /// Redis缓存接口

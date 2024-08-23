@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using opensmsplatform.Common.Core;
+using OpenSmsPlatform.Common.Core;
 
-namespace opensmsplatform.Common.Option
+namespace OpenSmsPlatform.Common.Option
 {
     public static class ConfigurableOptions
     {

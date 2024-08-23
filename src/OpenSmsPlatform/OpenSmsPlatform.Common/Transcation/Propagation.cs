@@ -1,4 +1,4 @@
-﻿namespace opensmsplatform.Common.Transcation
+﻿namespace OpenSmsPlatform.Common.Transcation
 {
     public enum Propagation
     {

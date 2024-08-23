@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using opensmsplatform.Model;
+using OpenSmsPlatform.Model;
 
-namespace opensmsplatform.Extensions
+namespace OpenSmsPlatform.Extensions
 {
     public class CustomProfile : Profile
     {

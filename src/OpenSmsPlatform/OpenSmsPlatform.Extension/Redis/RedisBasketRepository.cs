@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using opensmsplatform.Common;
-using opensmsplatform.Common.Helper;
+using OpenSmsPlatform.Common;
+using OpenSmsPlatform.Common.Helper;
 using StackExchange.Redis;
 using System.ComponentModel;
 
-namespace opensmsplatform.Extension.Redis
+namespace OpenSmsPlatform.Extension.Redis
 {
     [Description("普通缓存考虑直接使用ICaching,如果要使用Redis队列等还是使用此类")]
     public class RedisBasketRepository : IRedisBasketRepository

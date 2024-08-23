@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace opensmsplatform.Common
+namespace OpenSmsPlatform.Common
 {
     public static class MethodInfoExtensions
     {
