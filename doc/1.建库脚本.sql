@@ -2,11 +2,16 @@ CREATE TABLE `osp_acc_charge`  (
   `id` bigint NOT NULL,
   `acc_id` varchar(255) NOT NULL COMMENT '账号id',
   `amount` decimal(10, 2) NOT NULL COMMENT '金额',
-  `remarks` varchar(255) NULL COMMENT '备注',
   `before_counts` int NOT NULL COMMENT '充值前条数',
   `counts` int NOT NULL COMMENT '充值条数',
   `after_counts` int NOT NULL COMMENT '充值后条数',
-  `create_on` datetime NULL,
+  `remarks` varchar(255) NULL COMMENT '备注',
+  `create_on` datetime NOT NULL,
+  `create_uid` bigint NOT NULL,
+  `create_by` varchar(20) NOT NULL,
+  `modify_on` datetime(0) NULL,
+  `modify_uid` bigint NULL,
+  `modify_by` varchar(20) NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -18,10 +23,15 @@ CREATE TABLE `osp_account`  (
   `acc_secret` varchar(40) NOT NULL COMMENT 'secret',
   `sms_suffix` varchar(40) NOT NULL COMMENT '短信后缀',
   `acc_counts` int NOT NULL COMMENT '短信余额',
-  `api_code` tinyint NOT NULL COMMENT 'api编码',
-  `remarks` varchar(255) NULL COMMENT '备注',
   `is_enable` tinyint NOT NULL COMMENT '是否启用 1.是 2.否',
+  `remarks` varchar(255) NULL COMMENT '备注',
+  `api_code` tinyint NULL COMMENT 'api编码',
   `create_on` datetime NOT NULL,
+  `create_uid` bigint NOT NULL,
+  `create_by` varchar(20) NOT NULL,
+  `modify_on` datetime NULL,
+  `modify_uid` bigint NULL,
+  `modify_by` varchar(20) NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -33,16 +43,26 @@ CREATE TABLE `osp_api`  (
   `is_enabled` tinyint NOT NULL COMMENT '是否启用',
   `remarks` varchar(400) NOT NULL COMMENT '备注',
   `create_on` varchar(255) NOT NULL,
+  `create_uid` bigint NOT NULL,
+  `create_by` varchar(20) NOT NULL,
+  `modify_on` datetime(0) NULL,
+  `modify_uid` bigint NULL,
+  `modify_by` varchar(20) NULL,
   PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `osp_limit`  (
   `id` bigint NOT NULL,
+  `add_type` tinyint NOT NULL COMMENT '添加类型 1.手动 2.自动',
   `mobile` varchar(11) NOT NULL COMMENT '手机号码',
   `limit_type` tinyint NOT NULL COMMENT '限制类型 1.白名单 2.黑名单',
   `remarks` varchar(255) NULL COMMENT '备注',
-  `add_type` tinyint NOT NULL COMMENT '添加类型 1.手动 2.自动',
   `create_on` datetime NOT NULL,
+  `create_uid` bigint NOT NULL,
+  `create_by` varchar(20) NOT NULL,
+  `modify_on` datetime(0) NULL,
+  `modify_uid` bigint NULL,
+  `modify_by` varchar(20) NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -59,6 +79,11 @@ CREATE TABLE `osp_record`  (
   `request_id` varchar(40) NOT NULL COMMENT '请求id',
   `api_code` tinyint NOT NULL COMMENT 'api编码',
   `create_on` datetime NOT NULL,
+  `create_uid` bigint NOT NULL,
+  `create_by` varchar(20) NOT NULL,
+  `modify_on` datetime(0) NULL,
+  `modify_uid` bigint NULL,
+  `modify_by` varchar(20) NULL,
   PRIMARY KEY (`id`)
 );
 
