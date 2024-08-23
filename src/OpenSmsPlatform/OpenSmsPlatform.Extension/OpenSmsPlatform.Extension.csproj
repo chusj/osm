@@ -14,7 +14,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\opensmsplatform.Service\opensmsplatform.Service.csproj" />
+	  <ProjectReference Include="..\OpenSmsPlatform.Service\OpenSmsPlatform.Service.csproj" />
 	</ItemGroup>
 
 </Project>

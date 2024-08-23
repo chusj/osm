@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\opensmsplatform.Model\opensmsplatform.Model.csproj" />
+    <ProjectReference Include="..\OpenSmsPlatform.Model\OpenSmsPlatform.Model.csproj" />
   </ItemGroup>
 
 </Project>

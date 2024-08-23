@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\opensmsplatform.IService\opensmsplatform.IService.csproj" />
-    <ProjectReference Include="..\opensmsplatform.Repository\opensmsplatform.Repository.csproj" />
+    <ProjectReference Include="..\OpenSmsPlatform.IService\OpenSmsPlatform.IService.csproj" />
+    <ProjectReference Include="..\OpenSmsPlatform.Repository\OpenSmsPlatform.Repository.csproj" />
   </ItemGroup>
 
 </Project>

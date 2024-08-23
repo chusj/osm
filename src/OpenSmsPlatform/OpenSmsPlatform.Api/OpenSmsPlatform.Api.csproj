@@ -14,11 +14,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\opensmsplatform.Extension\opensmsplatform.Extension.csproj" />
+	  <Folder Include="Logs\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Logs\" />
+	  <ProjectReference Include="..\OpenSmsPlatform.Extension\OpenSmsPlatform.Extension.csproj" />
 	</ItemGroup>
 
 </Project>
