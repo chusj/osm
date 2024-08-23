@@ -6,7 +6,7 @@ namespace OpenSmsPlatform.Model
     /// 短信商API
     ///</summary>
     [SugarTable("osp_api")]
-    public class OspApi:RootEntityTkey<long>
+    public class OspApi : RootEntityTkey<long>
     {
         /// <summary>
         /// api通道编码 
@@ -37,22 +37,22 @@ namespace OpenSmsPlatform.Model
         ///</summary>
         [SugarColumn(ColumnName = "remarks")]
         public string Remarks { get; set; }
-        
+
         [SugarColumn(ColumnName = "create_on", IsNullable = false)]
         public DateTime CreateOn { get; set; }
-        
+
         [SugarColumn(ColumnName = "create_uid", IsNullable = false)]
         public long CreateUid { get; set; }
-        
+
         [SugarColumn(ColumnName = "create_by", IsNullable = false)]
         public string CreateBy { get; set; }
-        
+
         [SugarColumn(ColumnName = "modify_on")]
         public DateTime? ModifyOn { get; set; }
-        
+
         [SugarColumn(ColumnName = "modify_uid")]
         public long? ModifyUid { get; set; }
-        
+
         [SugarColumn(ColumnName = "modify_by")]
         public string ModifyBy { get; set; }
     }

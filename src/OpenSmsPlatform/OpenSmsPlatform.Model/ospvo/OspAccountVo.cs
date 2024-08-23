@@ -5,8 +5,6 @@
     ///</summary>
     public class OspAccountVo
     {
-        public long Id { get; set; }
-
         /// <summary>
         /// 账号名 
         ///</summary>
@@ -16,16 +14,6 @@
         /// 账号id 
         ///</summary>
         public string AccId { get; set; }
-
-        /// <summary>
-        /// key 
-        ///</summary>
-        public string AccKey { get; set; }
-
-        /// <summary>
-        /// secret 
-        ///</summary>
-        public string AccSecret { get; set; }
 
         /// <summary>
         /// 短信后缀 
@@ -40,7 +28,7 @@
         /// <summary>
         /// 是否启用 1.是 2.否 
         ///</summary>
-        public byte IsEnable { get; set; }
+        public int IsEnable { get; set; }
 
         /// <summary>
         /// 备注 
@@ -50,18 +38,12 @@
         /// <summary>
         /// api编码 
         ///</summary>
-        public byte? ApiCode { get; set; }
+        public string ApiCode { get; set; }
 
         public DateTime CreateOn { get; set; }
 
         public long CreateUid { get; set; }
 
         public string CreateBy { get; set; }
-
-        public DateTime? ModifyOn { get; set; }
-
-        public long? ModifyUid { get; set; }
-
-        public string ModifyBy { get; set; }
     }
 }

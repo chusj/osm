@@ -6,11 +6,8 @@ namespace OpenSmsPlatform.Model
     /// 账号
     ///</summary>
     [SugarTable("osp_account")]
-    public class OspAccount
+    public class OspAccount : RootEntityTkey<long>
     {
-        [SugarColumn(ColumnName = "id", IsNullable = false, IsPrimaryKey = true)]
-        public long Id { get; set; }
-
         /// <summary>
         /// 账号名 
         ///</summary>
@@ -51,7 +48,7 @@ namespace OpenSmsPlatform.Model
         /// 是否启用 1.是 2.否 
         ///</summary>
         [SugarColumn(ColumnName = "is_enable", IsNullable = false)]
-        public byte IsEnable { get; set; }
+        public int IsEnable { get; set; }
 
         /// <summary>
         /// 备注 
@@ -63,23 +60,23 @@ namespace OpenSmsPlatform.Model
         /// api编码 
         ///</summary>
         [SugarColumn(ColumnName = "api_code")]
-        public byte? ApiCode { get; set; }
-        
+        public string ApiCode { get; set; }
+
         [SugarColumn(ColumnName = "create_on", IsNullable = false)]
         public DateTime CreateOn { get; set; }
-        
+
         [SugarColumn(ColumnName = "create_uid", IsNullable = false)]
         public long CreateUid { get; set; }
-        
+
         [SugarColumn(ColumnName = "create_by", IsNullable = false)]
         public string CreateBy { get; set; }
-        
+
         [SugarColumn(ColumnName = "modify_on")]
         public DateTime? ModifyOn { get; set; }
-        
+
         [SugarColumn(ColumnName = "modify_uid")]
         public long? ModifyUid { get; set; }
-        
+
         [SugarColumn(ColumnName = "modify_by")]
         public string ModifyBy { get; set; }
     }

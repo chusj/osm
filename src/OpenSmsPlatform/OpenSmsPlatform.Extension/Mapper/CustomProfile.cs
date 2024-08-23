@@ -15,6 +15,9 @@ namespace OpenSmsPlatform.Extensions
 
             CreateMap<OspApi, OspApiVo>();
             CreateMap<OspApiVo, OspApi>();
+
+            CreateMap<OspAccount, OspAccountVo>();
+            CreateMap<OspAccountVo, OspAccount>();
         }
     }
 }
