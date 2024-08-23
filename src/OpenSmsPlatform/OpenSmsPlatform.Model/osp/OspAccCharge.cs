@@ -6,11 +6,8 @@ namespace OpenSmsPlatform.Model
     /// 账号充值
     ///</summary>
     [SugarTable("osp_acc_charge")]
-    public class OspAccCharge
+    public class OspAccCharge : RootEntityTkey<long>
     {
-        [SugarColumn(ColumnName = "id", IsNullable = false, IsPrimaryKey = true)]
-        public long Id { get; set; }
-
         /// <summary>
         /// 账号id 
         ///</summary>
@@ -46,7 +43,7 @@ namespace OpenSmsPlatform.Model
         ///</summary>
         [SugarColumn(ColumnName = "remarks")]
         public string Remarks { get; set; }
-        
+
         [SugarColumn(ColumnName = "create_on", IsNullable = false)]
         public DateTime CreateOn { get; set; }
 

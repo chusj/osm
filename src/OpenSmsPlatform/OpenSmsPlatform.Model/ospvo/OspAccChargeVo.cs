@@ -5,7 +5,7 @@
     ///</summary>
     public class OspAccChargeVo
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 账号id 
