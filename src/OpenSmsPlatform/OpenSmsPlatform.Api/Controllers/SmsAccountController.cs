@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using OpenSmsPlatform.IService;
 using OpenSmsPlatform.Model;
+using Serilog;
 using System.Linq.Expressions;
 
 namespace OpenSmsPlatform.Api.Controllers
@@ -28,7 +30,12 @@ namespace OpenSmsPlatform.Api.Controllers
             Expression<Func<OspAccount, bool>> whereExpression = entity =>
                    entity.AccName.Contains(name);
 
-            return await _accountService.Query(whereExpression);
+            List<OspAccount> tempList = await _accountService.Query(whereExpression);
+
+            //Todo => Swagger中返回id字段跟数据库中的实际值不等了。
+            //Log.Information(JsonConvert.SerializeObject(tempList));
+
+            return tempList;
         }
 
         [HttpPost]
