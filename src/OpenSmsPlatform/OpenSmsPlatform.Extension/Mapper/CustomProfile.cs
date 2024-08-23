@@ -12,6 +12,9 @@ namespace OpenSmsPlatform.Extensions
         {
             CreateMap<AuditSqlLog, AuditSqlLogVo>();
             CreateMap<AuditSqlLogVo, AuditSqlLog>();
+
+            CreateMap<OspApi, OspApiVo>();
+            CreateMap<OspApiVo, OspApi>();
         }
     }
 }

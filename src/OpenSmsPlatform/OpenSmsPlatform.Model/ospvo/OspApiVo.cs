@@ -5,12 +5,10 @@
     ///</summary>
     public class OspApiVo
     {
-        public long Id { get; set; }
-
         /// <summary>
         /// api通道编码 
         ///</summary>
-        public byte ApiCode { get; set; }
+        public string ApiCode { get; set; }
 
         /// <summary>
         /// 名称 
@@ -33,15 +31,5 @@
         public string Remarks { get; set; }
         
         public string CreateOn { get; set; }
-        
-        public long CreateUid { get; set; }
-        
-        public string CreateBy { get; set; }
-        
-        public DateTime? ModifyOn { get; set; }
-        
-        public long? ModifyUid { get; set; }
-        
-        public string ModifyBy { get; set; }
     }
 }

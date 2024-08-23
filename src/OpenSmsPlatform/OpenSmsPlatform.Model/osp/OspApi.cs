@@ -6,15 +6,13 @@ namespace OpenSmsPlatform.Model
     /// 短信商API
     ///</summary>
     [SugarTable("osp_api")]
-    public class OspApi
+    public class OspApi:RootEntityTkey<long>
     {
-        [SugarColumn(ColumnName = "id", IsNullable = false, IsPrimaryKey = true)]
-        public long Id { get; set; }
         /// <summary>
         /// api通道编码 
         ///</summary>
         [SugarColumn(ColumnName = "api_code", IsNullable = false)]
-        public byte ApiCode { get; set; }
+        public string ApiCode { get; set; }
 
         /// <summary>
         /// 名称 
@@ -32,7 +30,7 @@ namespace OpenSmsPlatform.Model
         /// 是否启用 
         ///</summary>
         [SugarColumn(ColumnName = "is_enabled", IsNullable = false)]
-        public byte IsEnabled { get; set; }
+        public int IsEnabled { get; set; }
 
         /// <summary>
         /// 备注 
@@ -41,7 +39,7 @@ namespace OpenSmsPlatform.Model
         public string Remarks { get; set; }
         
         [SugarColumn(ColumnName = "create_on", IsNullable = false)]
-        public string CreateOn { get; set; }
+        public DateTime CreateOn { get; set; }
         
         [SugarColumn(ColumnName = "create_uid", IsNullable = false)]
         public long CreateUid { get; set; }
