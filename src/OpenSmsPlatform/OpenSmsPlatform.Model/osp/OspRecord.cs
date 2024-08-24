@@ -5,7 +5,9 @@ namespace OpenSmsPlatform.Model
     /// <summary>
     /// 短信记录
     ///</summary>
-    [SugarTable("osp_record")]
+    [SplitTable(SplitType.Month)] //按月分表 （自带分表支持 年、季、月、周、日）
+    [SugarTable("osp_record_{year}{month}{day}")]
+    //[SugarTable("osp_record")]
     public class OspRecord:RootEntityTkey<long>
     {
         /// <summary>
