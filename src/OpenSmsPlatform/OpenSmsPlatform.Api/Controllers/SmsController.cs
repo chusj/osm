@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OpenSmsPlatform.Api.Extensions;
 using OpenSmsPlatform.IService;
 using OpenSmsPlatform.Model;
 using OpenSmsPlatform.Repository.UnitOfWorks;
+using SmsPackage.Model;
+using SmsPackage.Service;
 
 namespace OpenSmsPlatform.Api.Controllers
 {
@@ -12,12 +13,36 @@ namespace OpenSmsPlatform.Api.Controllers
     {
         private readonly IOspAccountService _accountService;
         private readonly IUnitOfWorkManage _unitOfWorkManage;
+        private readonly IZhutongService _zhutongService;
+        private readonly ILianluService _lianluService;
 
         public SmsController(IOspAccountService accountService,
-            IUnitOfWorkManage unitOfWorkManage)
+            IUnitOfWorkManage unitOfWorkManage,
+            IConfiguration config)
         {
             _accountService = accountService;
             _unitOfWorkManage = unitOfWorkManage;
+
+            IServiceCollection services = new ServiceCollection();
+            services.AddZhutongSendMessageApi(option =>
+            {
+                option.ApiUrl = config.GetValue<string>("ZhuTong:ApiUrl");
+                option.ApiPath = config.GetValue<string>("ZhuTong:ApiPath");
+                option.UserName = config.GetValue<string>("ZhuTong:UserName");
+                option.Password = config.GetValue<string>("ZhuTong:Password");
+            });
+            services.AddLianluSendMessageApi(option =>
+            {
+                option.ApiUrl = config.GetValue<string>("LianLu:ApiUrl");
+                option.ApiPath = config.GetValue<string>("LianLu:ApiPath");
+                option.MchId = config.GetValue<string>("LianLu:MchId");
+                option.AppId = config.GetValue<string>("LianLu:AppId");
+                option.AppKey = config.GetValue<string>("LianLu:AppKey");
+            });
+            IServiceProvider serviceProvider = services.BuildServiceProvider();
+
+            _zhutongService = serviceProvider.GetService<IZhutongService>();
+            _lianluService = serviceProvider.GetService<ILianluService>();
         }
 
         public async Task<ApiResponse> Send([FromBody] SmsRequest request)
@@ -54,10 +79,22 @@ namespace OpenSmsPlatform.Api.Controllers
                 OspAccount account = acountTuple.account;
 
                 //4.发送短信
-                //response = api.Send(request.Mobiles, request.Contents, request.SmsSuffix);
+                if (account.ApiCode == "lianlu")
+                {
+                    LianLuApiResponse lianLuResponse = await _lianluService.Send(request.Mobiles, request.Contents, request.SmsSuffix);
+                    response.Code = lianLuResponse.Code;
+                    response.Message = lianLuResponse.Message;
+                }
+                else
+                {
+                    ZhuTongApiResponse zhutongResponse = await _zhutongService.Send(request.Mobiles, request.Contents);
+                    response.Code = zhutongResponse.Code;
+                    response.Message = zhutongResponse.Message;
+                }
+
                 if (response.Code == 200)
                 {
-                    //6. 扣费、保存记录(事务提交)
+                    //5. 扣费、保存记录(事务提交)
                     using var uow = _unitOfWorkManage.CreateUnitOfWork();
                     account.AccCounts = account.AccCounts - UseCounts;
                     //bool flag = await _message.AddRecordsAndUpdateBalance(AppendList(request, smsAccount.Id), smsAccount);
@@ -65,11 +102,9 @@ namespace OpenSmsPlatform.Api.Controllers
                     uow.Commit();
 
                     //7.最后返回
-                    response.Message = "发送成功";
+                    response.Message =response.Message ?? "发送成功";
                 }
                 return response;
-
-
             }
             catch (Exception ex)
             {
@@ -77,8 +112,6 @@ namespace OpenSmsPlatform.Api.Controllers
                 response.Message = $"内部服务器错误: {ex.Message}";
                 return response;
             }
-
-            return response;
         }
 
         /// <summary>
