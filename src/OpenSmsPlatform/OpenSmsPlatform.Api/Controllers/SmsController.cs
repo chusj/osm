@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OpenSmsPlatform.Common.Core;
+using OpenSmsPlatform.Common.Helper;
 using OpenSmsPlatform.IService;
 using OpenSmsPlatform.Model;
 using OpenSmsPlatform.Repository.UnitOfWorks;
@@ -12,17 +14,24 @@ namespace OpenSmsPlatform.Api.Controllers
     public class SmsController : ControllerBase
     {
         private readonly IOspAccountService _accountService;
+        private readonly IOspRecordService _recordService;
         private readonly IUnitOfWorkManage _unitOfWorkManage;
+        private readonly IHttpContextAccessor _httpContext;
         private readonly IZhutongService _zhutongService;
         private readonly ILianluService _lianluService;
 
         public SmsController(IOspAccountService accountService,
+            IOspRecordService recordService,
             IUnitOfWorkManage unitOfWorkManage,
+            IHttpContextAccessor httpContext,
             IConfiguration config)
         {
             _accountService = accountService;
+            _recordService = recordService;
             _unitOfWorkManage = unitOfWorkManage;
+            _httpContext = httpContext;
 
+            #region 短信api的配置项
             IServiceCollection services = new ServiceCollection();
             services.AddZhutongSendMessageApi(option =>
             {
@@ -40,6 +49,7 @@ namespace OpenSmsPlatform.Api.Controllers
                 option.AppKey = config.GetValue<string>("LianLu:AppKey");
             });
             IServiceProvider serviceProvider = services.BuildServiceProvider();
+            #endregion
 
             _zhutongService = serviceProvider.GetService<IZhutongService>();
             _lianluService = serviceProvider.GetService<ILianluService>();
@@ -76,10 +86,10 @@ namespace OpenSmsPlatform.Api.Controllers
                     response.Message = turple.msg;
                     return response;
                 }
-                OspAccount account = acountTuple.account;
+                OspAccount OspAccount = acountTuple.account;
 
                 //4.发送短信
-                if (account.ApiCode == "lianlu")
+                if (OspAccount.ApiCode == "lianlu")
                 {
                     LianLuApiResponse lianLuResponse = await _lianluService.Send(request.Mobiles, request.Contents, request.SmsSuffix);
                     response.Code = lianLuResponse.Code;
@@ -96,8 +106,8 @@ namespace OpenSmsPlatform.Api.Controllers
                 {
                     //5. 扣费、保存记录(事务提交)
                     using var uow = _unitOfWorkManage.CreateUnitOfWork();
-                    account.AccCounts = account.AccCounts - UseCounts;
-                    //bool flag = await _message.AddRecordsAndUpdateBalance(AppendList(request, smsAccount.Id), smsAccount);
+                    OspAccount.AccCounts = OspAccount.AccCounts - UseCounts;
+                    bool flag = await _recordService.AddRecordsAndUpdateAmount(AppendList(request, OspAccount), OspAccount);
 
                     uow.Commit();
 
@@ -204,6 +214,40 @@ namespace OpenSmsPlatform.Api.Controllers
             }
 
             return checkTurple;
+        }
+
+        /// <summary>
+        /// 拼接列表
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="account"></param>
+        /// <returns></returns>
+        private List<OspRecord> AppendList(SmsRequest request, OspAccount account)
+        {
+            string ip = IpHelper.GetIp(_httpContext);
+            List<OspRecord> list = new List<OspRecord>();
+            foreach (var mobile in request.Mobiles)
+            {
+                OspRecord record = new OspRecord();
+                record.AccId = account.Id;
+                record.Mobile = mobile;
+                record.Content = request.Contents;
+                record.Code = request.Code;
+                record.IsCode = string.IsNullOrEmpty(request.Code) ? 2 : 1;
+                record.IsUsed = 2;
+                record.SendOn = DateTime.Now;
+                record.Counts = CalcUseCounts(request.Mobiles.Count, request.Contents.Length);
+                record.RequestId = request.RequestId;
+                record.ApiCode = account.ApiCode;
+                record.CreateOn = DateTime.Now;
+                record.CreateBy = "admin";
+                record.CreateUid = 0;
+
+                //record.Ip = ip;
+
+                list.Add(record);
+            }
+            return list;
         }
     }
 }
