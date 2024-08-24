@@ -39,5 +39,10 @@
         /// 签名
         /// </summary>
         public string Signature { get; set; }
+
+        /// <summary>
+        /// 请求id（GUID）
+        /// </summary>
+        public string RequestId { get; set; }
     }
 }

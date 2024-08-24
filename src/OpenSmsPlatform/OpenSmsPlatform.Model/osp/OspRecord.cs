@@ -6,11 +6,8 @@ namespace OpenSmsPlatform.Model
     /// 短信记录
     ///</summary>
     [SugarTable("osp_record")]
-    public class OspRecord
+    public class OspRecord:RootEntityTkey<long>
     {
-        [SugarColumn(ColumnName = "id", IsNullable = false, IsPrimaryKey = true)]
-        public long Id { get; set; }
-
         /// <summary>
         /// 账号id 
         ///</summary>
@@ -38,13 +35,13 @@ namespace OpenSmsPlatform.Model
         /// 是否为验证码 1.是 2.否 
         ///</summary>
         [SugarColumn(ColumnName = "is_code", IsNullable = false)]
-        public byte IsCode { get; set; }
+        public int IsCode { get; set; }
 
         /// <summary>
         /// 验证码是否使用  1.是 2.否 
         ///</summary>
         [SugarColumn(ColumnName = "is_used", IsNullable = false)]
-        public byte IsUsed { get; set; }
+        public int IsUsed { get; set; }
 
         /// <summary>
         /// 发送时间 
@@ -56,7 +53,7 @@ namespace OpenSmsPlatform.Model
         /// 计费条数 
         ///</summary>
         [SugarColumn(ColumnName = "counts", IsNullable = false)]
-        public byte Counts { get; set; }
+        public int Counts { get; set; }
 
         /// <summary>
         /// 请求id 
@@ -68,7 +65,7 @@ namespace OpenSmsPlatform.Model
         /// api编码 
         ///</summary>
         [SugarColumn(ColumnName = "api_code", IsNullable = false)]
-        public byte ApiCode { get; set; }
+        public string ApiCode { get; set; }
 
         [SugarColumn(ColumnName = "create_on", IsNullable = false)]
         public DateTime CreateOn { get; set; }
