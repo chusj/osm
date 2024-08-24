@@ -55,7 +55,7 @@ namespace OpenSmsPlatform.Api.Controllers
             _lianluService = serviceProvider.GetService<ILianluService>();
         }
 
-        public async Task<ApiResponse> Send([FromBody] SmsRequest request)
+        public async Task<ApiResponse> SendAsync([FromBody] SmsRequest request)
         {
             ApiResponse response = new ApiResponse();
 
