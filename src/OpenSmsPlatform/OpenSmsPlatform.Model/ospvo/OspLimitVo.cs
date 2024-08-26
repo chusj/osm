@@ -10,7 +10,7 @@
         /// <summary>
         /// 添加类型 1.手动 2.自动 
         ///</summary>
-        public byte AddType { get; set; }
+        public int AddType { get; set; }
 
         /// <summary>
         /// 手机号码 
@@ -20,7 +20,7 @@
         /// <summary>
         /// 限制类型 1.白名单 2.黑名单 
         ///</summary>
-        public byte LimitType { get; set; }
+        public int LimitType { get; set; }
 
         /// <summary>
         /// 备注 

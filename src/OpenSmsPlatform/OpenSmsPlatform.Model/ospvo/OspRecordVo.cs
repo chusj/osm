@@ -54,7 +54,7 @@
         /// <summary>
         /// api编码 
         ///</summary>
-        public byte ApiCode { get; set; }
+        public string ApiCode { get; set; }
 
         public DateTime CreateOn { get; set; }
 

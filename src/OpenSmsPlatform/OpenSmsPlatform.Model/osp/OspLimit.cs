@@ -6,16 +6,13 @@ namespace OpenSmsPlatform.Model
     /// 限制（黑/白名单）
     ///</summary>
     [SugarTable("osp_limit")]
-    public class OspLimit
+    public class OspLimit:RootEntityTkey<long>
     {
-        [SugarColumn(ColumnName = "id", IsNullable = false, IsPrimaryKey = true)]
-        public long Id { get; set; }
-
         /// <summary>
         /// 添加类型 1.手动 2.自动 
         ///</summary>
         [SugarColumn(ColumnName = "add_type", IsNullable = false)]
-        public byte AddType { get; set; }
+        public int AddType { get; set; }
 
         /// <summary>
         /// 手机号码 
@@ -27,7 +24,7 @@ namespace OpenSmsPlatform.Model
         /// 限制类型 1.白名单 2.黑名单 
         ///</summary>
         [SugarColumn(ColumnName = "limit_type", IsNullable = false)]
-        public byte LimitType { get; set; }
+        public int LimitType { get; set; }
 
         /// <summary>
         /// 备注 
