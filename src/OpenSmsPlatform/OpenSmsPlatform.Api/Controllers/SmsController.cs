@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OpenSmsPlatform.Common.Core;
+using OpenSmsPlatform.Common;
 using OpenSmsPlatform.Common.Helper;
 using OpenSmsPlatform.IService;
 using OpenSmsPlatform.Model;
@@ -78,17 +78,28 @@ namespace OpenSmsPlatform.Api.Controllers
                     return response;
                 }
 
-                //3.检查账号
+                //3.(单发时)短信限制
+                if (request.Mobiles.Count == 1)
+                {
+                    (bool enable, string msg) limitTruple = await CheckSendLimit(request.Mobiles[0], request.Code);
+                    if(!limitTruple.enable)
+                    {
+                        response.Message = limitTruple.msg;
+                        return response;
+                    }
+                }
+
+                //4.检查账号
                 int UseCounts = CalcUseCounts(request.Mobiles.Count, request.Contents.Length);
                 (bool enable, string msg, OspAccount account) acountTuple = await CheckAccount(request, UseCounts);
                 if (!acountTuple.enable)
                 {
-                    response.Message = turple.msg;
+                    response.Message = acountTuple.msg;
                     return response;
                 }
                 OspAccount OspAccount = acountTuple.account;
 
-                //4.发送短信
+                //5.发送短信
                 if (OspAccount.ApiCode == "lianlu")
                 {
                     LianLuApiResponse lianLuResponse = await _lianluService.Send(request.Mobiles, request.Contents, request.SmsSuffix);
@@ -104,7 +115,7 @@ namespace OpenSmsPlatform.Api.Controllers
 
                 if (response.Code == 200)
                 {
-                    //5. 扣费、保存记录(事务提交)
+                    //6. 扣费、保存记录(事务提交)
                     using var uow = _unitOfWorkManage.CreateUnitOfWork();
                     OspAccount.AccCounts = OspAccount.AccCounts - UseCounts;
                     bool flag = await _recordService.AddRecordsAndUpdateAmount(AppendList(request, OspAccount), OspAccount);
@@ -112,7 +123,7 @@ namespace OpenSmsPlatform.Api.Controllers
                     uow.Commit();
 
                     //7.最后返回
-                    response.Message =response.Message ?? "发送成功";
+                    response.Message = response.Message ?? "发送成功";
                 }
                 return response;
             }
@@ -249,5 +260,66 @@ namespace OpenSmsPlatform.Api.Controllers
             }
             return list;
         }
+
+        /// <summary>
+        /// 检查发送显示
+        /// </summary>
+        /// <param name="mobile">手机号码</param>
+        /// <param name="code">验证码</param>
+        /// <returns></returns>
+        private async Task<(bool enable, string msg)> CheckSendLimit(string mobile, string code)
+        {
+            (bool enable, string msg) resultTurple = (true, string.Empty);
+            int smsType = 1;
+            if (string.IsNullOrEmpty(code))
+            {
+                smsType = 2;
+            }
+
+            //普通短信
+            List<SmsLimit> list = AppSettings.App<SmsLimit>("SmsLimit");
+            SmsLimit smsLimit = list.Where(x => x.SmsType == smsType).SingleOrDefault();
+            if (smsLimit.Enabled)
+            {
+                PageModel<OspRecord> page = await _recordService.QueryMonthlyRecords(mobile, DateTime.Now, smsLimit.MonthMaxCount, smsType);
+                if (smsLimit.MonthMaxCount >= page.dataCount)
+                {
+                    resultTurple.enable = false;
+                    resultTurple.msg = "达到当月发送最大值";
+                }
+                else if (smsLimit.DayMaxCount >= page.data.Count(x=>x.CreateOn == DateTime.Today))
+                {
+                    resultTurple.enable = false;
+                    resultTurple.msg = "达到当日发送最大值";
+                }
+            }
+            return resultTurple;
+        }
+    }
+
+    /// <summary>
+    /// 短信限制
+    /// </summary>
+    public class SmsLimit
+    {
+        /// <summary>
+        /// 短信类型 1.验证码短信 2.普通短信
+        /// </summary>
+        public int SmsType { get; set; }
+
+        /// <summary>
+        /// 是否启用
+        /// </summary>
+        public bool Enabled { get; set; }
+
+        /// <summary>
+        /// 每天最大条数
+        /// </summary>
+        public int DayMaxCount { get; set; }
+
+        /// <summary>
+        /// 每月最大条数
+        /// </summary>
+        public int MonthMaxCount { get; set; }
     }
 }
