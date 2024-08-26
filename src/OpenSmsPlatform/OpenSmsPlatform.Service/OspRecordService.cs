@@ -38,10 +38,16 @@ namespace OpenSmsPlatform.Service
             return await _accountRepository.Update(account);
         }
 
-        public async Task<PageModel<OspRecord>> QueryMonthlyRecords(string mobile,DateTime endDate,int maxCount = 50)
+        public async Task<PageModel<OspRecord>> QueryMonthlyRecords(string mobile,DateTime endDate,int maxCount,int smsType)
         {
+            //由于分表保存，最大查询100条记录
+            if(maxCount > 100)
+            {
+                maxCount = 100;
+            }
+
             var condition = Expressionable.Create<OspRecord>();
-            condition.And(exp: x => x.Mobile == mobile);
+            condition.And(exp: x => x.Mobile == mobile && x.IsCode== smsType);
 
             return await _recordRepository.QueryPageSplit(condition.ToExpression(), endDate.AddMonths(-1), endDate, 1,maxCount,"create_on desc");
         }
