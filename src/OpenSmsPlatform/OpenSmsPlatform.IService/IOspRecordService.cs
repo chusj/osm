@@ -11,5 +11,15 @@ namespace OpenSmsPlatform.IService
         /// <param name="account">账号实体</param>
         /// <returns></returns>
         Task<bool> AddRecordsAndUpdateAmount(List<OspRecord> recordList, OspAccount account);
+
+
+        /// <summary>
+        /// 查询一个月的记录
+        /// </summary>
+        /// <param name="mobile">手机</param>
+        /// <param name="endDate">结束日期</param>
+        /// <param name="maxCount">最大条数</param>
+        /// <returns></returns>
+        Task<PageModel<OspRecord>> QueryMonthlyRecords(string mobile, DateTime endDate, int maxCount = 50);
     }
 }
