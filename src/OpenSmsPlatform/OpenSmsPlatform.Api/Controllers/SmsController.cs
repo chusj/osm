@@ -9,7 +9,7 @@ using SmsPackage.Service;
 
 namespace OpenSmsPlatform.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class SmsController : ControllerBase
     {
@@ -58,6 +58,7 @@ namespace OpenSmsPlatform.Api.Controllers
             _lianluService = serviceProvider.GetService<ILianluService>();
         }
 
+        [HttpPost]
         public async Task<ApiResponse> SendAsync([FromBody] SmsRequest request)
         {
             ApiResponse response = new ApiResponse();
@@ -159,7 +160,7 @@ namespace OpenSmsPlatform.Api.Controllers
             {
                 checkTurple.msg = "内容不包含验证码";
             }
-            else if (!string.IsNullOrWhiteSpace(request.Contents) && !request.Contents.Contains(request.Signature))
+            else if (!string.IsNullOrWhiteSpace(request.Contents) && !request.Contents.Contains(request.SmsSuffix))
             {
                 checkTurple.msg = "内容缺少短信后缀";
             }
@@ -283,8 +284,8 @@ namespace OpenSmsPlatform.Api.Controllers
             OspLimit ospLimit = await _limitService.IsInLimitList(mobile);
             if (ospLimit == null)
             {
-                List<SmsLimit> list = AppSettings.App<SmsLimit>("SmsLimit");
-                SmsLimit smsLimit = list.Where(x => x.SmsType == smsType).SingleOrDefault();
+                List<SmsLimitConfig> list = AppSettings.App<SmsLimitConfig>("SmsLimit");
+                SmsLimitConfig smsLimit = list.Where(x => x.SmsType == smsType).SingleOrDefault();
                 if (smsLimit.Enabled)
                 {
                     PageModel<OspRecord> page = await _recordService.QueryMonthlyRecords(mobile, DateTime.Now, smsLimit.MonthMaxCount, smsType);
@@ -308,31 +309,5 @@ namespace OpenSmsPlatform.Api.Controllers
 
             return resultTurple;
         }
-    }
-
-    /// <summary>
-    /// 短信限制
-    /// </summary>
-    public class SmsLimit
-    {
-        /// <summary>
-        /// 短信类型 1.验证码短信 2.普通短信
-        /// </summary>
-        public int SmsType { get; set; }
-
-        /// <summary>
-        /// 是否启用
-        /// </summary>
-        public bool Enabled { get; set; }
-
-        /// <summary>
-        /// 每天最大条数
-        /// </summary>
-        public int DayMaxCount { get; set; }
-
-        /// <summary>
-        /// 每月最大条数
-        /// </summary>
-        public int MonthMaxCount { get; set; }
     }
 }

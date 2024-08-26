@@ -2,9 +2,6 @@
 using Newtonsoft.Json;
 using OpenSmsPlatform.Common.Helper;
 using OpenSmsPlatform.Model;
-using Serilog;
-using System.Security.Principal;
-using System.Text;
 
 namespace OpenSmsPlatform.Api.Controllers
 {
@@ -12,35 +9,27 @@ namespace OpenSmsPlatform.Api.Controllers
     [ApiController]
     public class TestController : ControllerBase
     {
-        public TestController()
-        {
-
-        }
-
         [HttpGet]
         public string Index()
         {
             return "Hello World !";
         }
 
-        [HttpGet]
-        public async Task<string> Send(string mobile, string url)
+        [HttpPost]
+        public string CreateRequestObj(string mobile)
         {
             SmsRequest smsRequest = new SmsRequest();
             smsRequest.Mobiles = new List<string> { mobile };
-            smsRequest.Contents = "";
-            smsRequest.Code = "";
+            smsRequest.Contents = "您的验证码：234442，为了您的信息安全，请不要转发验证码。【杭州希和】";
+            smsRequest.Code = "234442";
             smsRequest.SmsSuffix = "【杭州希和】";
-            smsRequest.AccId = "12345";
+            smsRequest.AccId = "1724397308";
             smsRequest.TimeStamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
             smsRequest.RequestId = Guid.NewGuid().ToString();
             //签名
             smsRequest.Signature = CreateSignature(smsRequest);
 
-
-            (bool success, string message) resultTurple = await SendPostAsync(smsRequest, $"{url}/Sms/SendAsync");
-
-            return $"发送结果：{resultTurple.success},返回消息：{resultTurple.message}";
+            return JsonConvert.SerializeObject(smsRequest);
         }
 
         /// <summary>
@@ -49,8 +38,8 @@ namespace OpenSmsPlatform.Api.Controllers
         /// <returns></returns>
         private string CreateSignature(SmsRequest request)
         {
-            string AccKey = "";
-            string AccSecret = "";
+            string AccKey = "1724397308415";
+            string AccSecret = "152f540b511b44d58f4b68bf26d3435e";
 
             // 构建签名字符串
             string signString = $"AccId={request.AccId}" +
@@ -61,33 +50,5 @@ namespace OpenSmsPlatform.Api.Controllers
 
             return Md5Helper.EncryptMD5(signString);
         }
-
-        private async Task<(bool success, string message)> SendPostAsync(object request, string url)
-        {
-            (bool success, string message) resultTurple = (false, string.Empty);
-            try
-            {
-                var jsonContent = JsonConvert.SerializeObject(request);
-                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-                HttpClient _httpClient = new HttpClient();
-                var response = await _httpClient.PostAsync(url, content);
-
-                //返回
-                resultTurple.message = await response.Content.ReadAsStringAsync();
-                resultTurple.success = true;
-
-                Log.Information($"External 请求原文：{jsonContent}");
-                Log.Information($"External 接口：{url}");
-                Log.Information($"External 返回：{resultTurple.message}");
-
-                return resultTurple;
-            }
-            catch (HttpRequestException e)
-            {
-                resultTurple.message = $"SendPostAsync => Exception:{e.Message}";
-                return resultTurple;
-            }
-        }
-
     }
 }
