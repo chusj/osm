@@ -28,9 +28,12 @@ namespace OpenSmsPlatform.Service
             }
 
             //2.根据accid查询账号信息
-            OspAccount account = await _accountRepository.QueryById(accId);
-            if (account != null)
+            var condition = Expressionable.Create<OspAccount>();
+            condition.And(x => x.AccId == accId);
+            List<OspAccount> accountList = await _accountRepository.Query(condition.ToExpression());
+            if (accountList != null)
             {
+                OspAccount account = accountList[0];
                 // 构建签名字符串
                 string signString = $"AccId={accId}" +
                                     $"&AccKey={account.AccKey}" +
