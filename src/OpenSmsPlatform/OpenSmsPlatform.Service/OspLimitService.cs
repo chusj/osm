@@ -22,7 +22,7 @@ namespace OpenSmsPlatform.Service
         public async Task<OspLimit> IsInLimitList(string mobile)
         {
             var condition = Expressionable.Create<OspLimit>();
-            condition.And(x => x.Mobile == mobile && x.LimitType == 2);
+            condition.And(x => x.Mobile == mobile);
 
             List<OspLimit> limitList = await _limitRepository.Query(condition.ToExpression());
             if (limitList.Count() == 1)

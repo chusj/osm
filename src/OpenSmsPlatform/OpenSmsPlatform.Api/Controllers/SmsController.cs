@@ -15,6 +15,7 @@ namespace OpenSmsPlatform.Api.Controllers
     {
         private readonly IOspAccountService _accountService;
         private readonly IOspRecordService _recordService;
+        private readonly IOspLimitService _limitService;
         private readonly IUnitOfWorkManage _unitOfWorkManage;
         private readonly IHttpContextAccessor _httpContext;
         private readonly IZhutongService _zhutongService;
@@ -22,12 +23,14 @@ namespace OpenSmsPlatform.Api.Controllers
 
         public SmsController(IOspAccountService accountService,
             IOspRecordService recordService,
+            IOspLimitService limitService,
             IUnitOfWorkManage unitOfWorkManage,
             IHttpContextAccessor httpContext,
             IConfiguration config)
         {
             _accountService = accountService;
             _recordService = recordService;
+            _limitService = limitService;
             _unitOfWorkManage = unitOfWorkManage;
             _httpContext = httpContext;
 
@@ -82,7 +85,7 @@ namespace OpenSmsPlatform.Api.Controllers
                 if (request.Mobiles.Count == 1)
                 {
                     (bool enable, string msg) limitTruple = await CheckSendLimit(request.Mobiles[0], request.Code);
-                    if(!limitTruple.enable)
+                    if (!limitTruple.enable)
                     {
                         response.Message = limitTruple.msg;
                         return response;
@@ -276,23 +279,33 @@ namespace OpenSmsPlatform.Api.Controllers
                 smsType = 2;
             }
 
-            //普通短信
-            List<SmsLimit> list = AppSettings.App<SmsLimit>("SmsLimit");
-            SmsLimit smsLimit = list.Where(x => x.SmsType == smsType).SingleOrDefault();
-            if (smsLimit.Enabled)
+            //判断是否在限白名单中
+            OspLimit ospLimit = await _limitService.IsInLimitList(mobile);
+            if (ospLimit == null)
             {
-                PageModel<OspRecord> page = await _recordService.QueryMonthlyRecords(mobile, DateTime.Now, smsLimit.MonthMaxCount, smsType);
-                if (smsLimit.MonthMaxCount >= page.dataCount)
+                List<SmsLimit> list = AppSettings.App<SmsLimit>("SmsLimit");
+                SmsLimit smsLimit = list.Where(x => x.SmsType == smsType).SingleOrDefault();
+                if (smsLimit.Enabled)
                 {
-                    resultTurple.enable = false;
-                    resultTurple.msg = "达到当月发送最大值";
-                }
-                else if (smsLimit.DayMaxCount >= page.data.Count(x=>x.CreateOn == DateTime.Today))
-                {
-                    resultTurple.enable = false;
-                    resultTurple.msg = "达到当日发送最大值";
+                    PageModel<OspRecord> page = await _recordService.QueryMonthlyRecords(mobile, DateTime.Now, smsLimit.MonthMaxCount, smsType);
+                    if (smsLimit.MonthMaxCount >= page.dataCount)
+                    {
+                        resultTurple.enable = false;
+                        resultTurple.msg = "达到当月发送最大值";
+                    }
+                    else if (smsLimit.DayMaxCount >= page.data.Count(x => x.CreateOn == DateTime.Today))
+                    {
+                        resultTurple.enable = false;
+                        resultTurple.msg = "达到当日发送最大值";
+                    }
                 }
             }
+            else if (ospLimit.LimitType == 2) //黑名单
+            {
+                resultTurple.enable = false;
+                resultTurple.msg = "the phone number is on the blacklist";
+            }
+
             return resultTurple;
         }
     }
