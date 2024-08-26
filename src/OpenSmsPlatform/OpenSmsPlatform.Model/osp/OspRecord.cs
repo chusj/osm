@@ -48,6 +48,7 @@ namespace OpenSmsPlatform.Model
         /// <summary>
         /// 发送时间 
         ///</summary>
+        [SplitField]
         [SugarColumn(ColumnName = "send_on", IsNullable = false)]
         public DateTime SendOn { get; set; }
 
