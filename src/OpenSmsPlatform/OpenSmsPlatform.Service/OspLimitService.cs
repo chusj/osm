@@ -14,11 +14,6 @@ namespace OpenSmsPlatform.Service
             _limitRepository = limitRepository;
         }
 
-        /// <summary>
-        /// 是否在限制名单中
-        /// </summary>
-        /// <param name="mobile"></param>
-        /// <returns></returns>
         public async Task<OspLimit> IsInLimitList(string mobile)
         {
             var condition = Expressionable.Create<OspLimit>();
