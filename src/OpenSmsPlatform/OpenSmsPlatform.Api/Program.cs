@@ -3,12 +3,14 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.OpenApi.Models;
 using OpenSmsPlatform.Common;
 using OpenSmsPlatform.Common.Core;
 using OpenSmsPlatform.Common.HttpContextUser;
 using OpenSmsPlatform.Extension;
 using OpenSmsPlatform.Extensions;
 using Serilog;
+using System.Reflection;
 
 namespace OpenSmsPlatform
 {
@@ -75,6 +77,24 @@ namespace OpenSmsPlatform
 
             builder.Services.AddHttpClient();
 
+
+            // ÅäÖÃ Swagger
+            builder.Services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "OpenSmsPlatform", Version = "v1" });
+
+                // ¼ÓÔØProjectName.xml
+                var apiXmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var apiXmlPath = Path.Combine(AppContext.BaseDirectory, apiXmlFile);
+                options.IncludeXmlComments(apiXmlPath);
+
+                // ¼ÓÔØProjectName.Model.xml
+                var modelXmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}".Replace(".Api", ".Model.xml");
+                var modelXmlPath = Path.Combine(AppContext.BaseDirectory, modelXmlFile);
+                options.IncludeXmlComments(modelXmlPath);
+            });
+
+
             var app = builder.Build();
             app.ConfigureApplication();    //ÄÃ Service
             app.UseApplicationSetup();
@@ -86,7 +106,10 @@ namespace OpenSmsPlatform
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "OpenSmsPlatform V1");
+                });
             }
 
             app.UseAuthorization();
