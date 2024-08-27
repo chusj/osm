@@ -6,6 +6,16 @@
 		<!--<Nullable>enable</Nullable>-->
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>..\OpenSmsPlatform.Api\OpenSmsPlatform.Model.xml</DocumentationFile>
+		<NoWarn>1701;1702;1591</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DocumentationFile>..\OpenSmsPlatform\OpenSmsPlatform.Model.xml</DocumentationFile>
+		<NoWarn>1701;1702;1591</NoWarn>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<PackageReference Include="SqlSugarCore" Version="5.1.4.129" />
 		<PackageReference Include="AutoMapper" Version="12.0.1" />

@@ -8,6 +8,16 @@
 		<UserSecretsId>7ef7faa5-ccfd-4c8c-9007-bc9b1c198cce</UserSecretsId>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>..\OpenSmsPlatform.Api\OpenSmsPlatform.Api.xml</DocumentationFile>
+		<NoWarn>1701;1702;1591</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DocumentationFile>..\OpenSmsPlatform\OpenSmsPlatform.Api.xml</DocumentationFile>
+		<NoWarn>1701;1702;1591</NoWarn>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<PackageReference Include="IdGen" Version="3.0.7" />
 		<PackageReference Include="smsapi.lianlu" Version="1.0.0" />
