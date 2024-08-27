@@ -286,7 +286,7 @@ namespace OpenSmsPlatform.Api.Controllers
                 smsType = 2;
             }
 
-            //判断是否在限白名单中
+            //判断是否在限制名单中（不在名单中，走条数限制逻辑）
             OspLimit ospLimit = await _limitService.IsInLimitList(mobile);
             if (ospLimit == null)
             {

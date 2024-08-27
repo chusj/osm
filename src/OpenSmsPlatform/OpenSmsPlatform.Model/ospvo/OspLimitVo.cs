@@ -5,8 +5,6 @@
     ///</summary>
     public class OspLimitVo
     {
-        public long Id { get; set; }
-
         /// <summary>
         /// 添加类型 1.手动 2.自动 
         ///</summary>
@@ -32,11 +30,5 @@
         public long CreateUid { get; set; }
 
         public string CreateBy { get; set; }
-
-        public DateTime? ModifyOn { get; set; }
-
-        public long? ModifyUid { get; set; }
-
-        public string ModifyBy { get; set; }
     }
 }
