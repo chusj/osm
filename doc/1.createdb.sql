@@ -9,11 +9,11 @@ CREATE TABLE `osp_acc_charge`  (
   `create_on` datetime NOT NULL,
   `create_uid` bigint NOT NULL,
   `create_by` varchar(20) NOT NULL,
-  `modify_on` datetime(0) NULL,
+  `modify_on` datetime NULL,
   `modify_uid` bigint NULL,
   `modify_by` varchar(20) NULL,
   PRIMARY KEY (`id`)
-);
+) COMMENT = '短信账号充值';
 
 CREATE TABLE `osp_account`  (
   `id` bigint NOT NULL,
@@ -22,10 +22,10 @@ CREATE TABLE `osp_account`  (
   `acc_key` varchar(20) NOT NULL COMMENT 'key',
   `acc_secret` varchar(40) NOT NULL COMMENT 'secret',
   `sms_suffix` varchar(40) NOT NULL COMMENT '短信后缀',
-  `acc_counts` int NOT NULL COMMENT '短信余额',
+  `acc_counts` int NOT NULL DEFAULT 0 COMMENT '短信余额',
   `is_enable` tinyint NOT NULL COMMENT '是否启用 1.是 2.否',
   `remarks` varchar(255) NULL COMMENT '备注',
-  `api_code` tinyint NULL COMMENT 'api编码',
+  `api_code` varchar(20) NULL COMMENT 'api编码',
   `create_on` datetime NOT NULL,
   `create_uid` bigint NOT NULL,
   `create_by` varchar(20) NOT NULL,
@@ -33,23 +33,23 @@ CREATE TABLE `osp_account`  (
   `modify_uid` bigint NULL,
   `modify_by` varchar(20) NULL,
   PRIMARY KEY (`id`)
-);
+) COMMENT = '短信账号';
 
 CREATE TABLE `osp_api`  (
   `id` bigint NOT NULL,
-  `api_code` tinyint NOT NULL COMMENT 'api通道编码',
+  `api_code` varchar(20) NOT NULL COMMENT 'api通道编码',
   `api_name` varchar(40) NOT NULL COMMENT '名称',
+  `is_enabled` tinyint NOT NULL COMMENT '是否启用 1.是 2.否',
   `api_url` varchar(200) NULL COMMENT 'Api地址',
-  `is_enabled` tinyint NOT NULL COMMENT '是否启用',
-  `remarks` varchar(400) NOT NULL COMMENT '备注',
+  `remarks` varchar(400) NULL COMMENT '备注',
   `create_on` varchar(255) NOT NULL,
   `create_uid` bigint NOT NULL,
   `create_by` varchar(20) NOT NULL,
-  `modify_on` datetime(0) NULL,
+  `modify_on` datetime NULL,
   `modify_uid` bigint NULL,
   `modify_by` varchar(20) NULL,
   PRIMARY KEY (`id`)
-);
+) COMMENT = '短信Api';
 
 CREATE TABLE `osp_limit`  (
   `id` bigint NOT NULL,
@@ -60,11 +60,11 @@ CREATE TABLE `osp_limit`  (
   `create_on` datetime NOT NULL,
   `create_uid` bigint NOT NULL,
   `create_by` varchar(20) NOT NULL,
-  `modify_on` datetime(0) NULL,
+  `modify_on` datetime NULL,
   `modify_uid` bigint NULL,
   `modify_by` varchar(20) NULL,
   PRIMARY KEY (`id`)
-);
+) COMMENT = '短信限制表';
 
 CREATE TABLE `osp_record`  (
   `id` bigint NOT NULL,
@@ -76,14 +76,15 @@ CREATE TABLE `osp_record`  (
   `is_used` tinyint NOT NULL COMMENT '验证码是否使用  1.是 2.否',
   `send_on` datetime NOT NULL COMMENT '发送时间',
   `counts` tinyint NOT NULL COMMENT '计费条数',
+  `api_code` varchar(20) NOT NULL COMMENT 'api编码',
   `request_id` varchar(40) NOT NULL COMMENT '请求id',
-  `api_code` tinyint NOT NULL COMMENT 'api编码',
+  `request_ip` varchar(40) NULL COMMENT '请求ip',
   `create_on` datetime NOT NULL,
   `create_uid` bigint NOT NULL,
   `create_by` varchar(20) NOT NULL,
-  `modify_on` datetime(0) NULL,
+  `modify_on` datetime NULL,
   `modify_uid` bigint NULL,
   `modify_by` varchar(20) NULL,
   PRIMARY KEY (`id`)
-);
+) COMMENT = '短信记录';
 
