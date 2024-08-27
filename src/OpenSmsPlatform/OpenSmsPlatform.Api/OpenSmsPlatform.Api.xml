@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OpenSmsPlatform.Api</name>
+    </assembly>
+    <members>
+        <member name="M:OpenSmsPlatform.Api.Controllers.SmsAccountController.GetAccount(System.String)">
+            <summary>
+            获取账号
+            </summary>
+            <param name="name">名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenSmsPlatform.Api.Controllers.SmsAccountController.AddAccount(System.String,System.String,System.String)">
+            <summary>
+            添加账号
+            </summary>
+            <param name="name">名称</param>
+            <param name="smsSuffix">短信后缀</param>
+            <param name="remarks">备注</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenSmsPlatform.Api.Controllers.SmsApiController.AddApi(System.String,System.String,System.String,System.String)">
+            <summary>
+            添加Api
+            </summary>
+            <param name="code">编码</param>
+            <param name="name">名称</param>
+            <param name="url">url</param>
+            <param name="remark">备注</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenSmsPlatform.Api.Controllers.SmsApiController.GetApi">
+            <summary>
+            获取API
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenSmsPlatform.Api.Controllers.SmsChargeController.GetCharge(System.String)">
+            <summary>
+            获取充值
+            </summary>
+            <param name="accId">账号id</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenSmsPlatform.Api.Controllers.SmsChargeController.AddCharge(System.String,System.Int32,System.String)">
+            <summary>
+            添加充值
+            </summary>
+            <param name="accId">账号id</param>
+            <param name="amount">充值金额</param>
+            <param name="remarks">充值备注，可为空</param>
+            <returns></returns>
+        </member>
+        <member name="T:OpenSmsPlatform.Api.Controllers.SmsController">
+            <summary>
+            短信控制器（主接口）
+            </summary>
+        </member>
+        <member name="M:OpenSmsPlatform.Api.Controllers.SmsController.SendAsync(OpenSmsPlatform.Model.SmsRequest)">
+            <summary>
+            发送短信
+            </summary>
+            <param name="request">短信请求对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenSmsPlatform.Api.Controllers.SmsController.CheckSmsParam(OpenSmsPlatform.Model.SmsRequest)">
+            <summary>
+            检查短信参数
+            </summary>
+            <param name="request"></param>
+            <returns>元组</returns>
+        </member>
+        <member name="M:OpenSmsPlatform.Api.Controllers.SmsController.CalcUseCounts(System.Int32,System.Int32)">
+            <summary>
+            计算使用条数
+            </summary>
+            <param name="mobileCounts">手机号码数目</param>
+            <param name="contentLength">内容长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenSmsPlatform.Api.Controllers.SmsController.CheckAccount(OpenSmsPlatform.Model.SmsRequest,System.Int32)">
+            <summary>
+            检查账号
+            </summary>
+            <param name="request"></param>
+            <param name="useCounts"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenSmsPlatform.Api.Controllers.SmsController.AppendList(OpenSmsPlatform.Model.SmsRequest,OpenSmsPlatform.Model.OspAccount)">
+            <summary>
+            拼接列表
+            </summary>
+            <param name="request"></param>
+            <param name="account"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenSmsPlatform.Api.Controllers.SmsController.CheckSendLimit(System.String,System.String)">
+            <summary>
+            检查发送显示
+            </summary>
+            <param name="mobile">手机号码</param>
+            <param name="code">验证码</param>
+            <returns></returns>
+        </member>
+        <member name="T:OpenSmsPlatform.Api.Controllers.SmsLimitController">
+            <summary>
+            短信限制控制器
+            </summary>
+        </member>
+        <member name="M:OpenSmsPlatform.Api.Controllers.SmsLimitController.AddLimit(System.String,System.Boolean,System.String)">
+            <summary>
+            添加限制
+            </summary>
+            <param name="mobile">手机号码</param>
+            <param name="limitType">限制类型：true 白名单的;false 黑名单</param>
+            <param name="remark">备注</param>
+            <returns></returns>
+        </member>
+        <member name="T:OpenSmsPlatform.Api.Controllers.TestController">
+            <summary>
+            测试控制器
+            </summary>
+        </member>
+        <member name="M:OpenSmsPlatform.Api.Controllers.TestController.CreateRequestObj(System.String)">
+            <summary>
+            创建请求对象
+            </summary>
+            <param name="mobile">手机号码</param>
+            <returns>返回发送短信时需要SmsRequest的JSON字符串</returns>
+        </member>
+        <member name="M:OpenSmsPlatform.Api.Controllers.TestController.RandomCode">
+            <summary>
+            随机验证码4位
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenSmsPlatform.Api.Controllers.TestController.CreateSignature(OpenSmsPlatform.Model.SmsRequest)">
+            <summary>
+            创建签名
+            </summary>
+            <returns>返回签名</returns>
+        </member>
+        <member name="T:OpenSmsPlatform.Api.SmsLimitConfig">
+            <summary>
+            短信限制配置
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Api.SmsLimitConfig.SmsType">
+            <summary>
+            短信类型 1.验证码短信 2.普通短信
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Api.SmsLimitConfig.Enabled">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Api.SmsLimitConfig.DayMaxCount">
+            <summary>
+            每天最大条数
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Api.SmsLimitConfig.MonthMaxCount">
+            <summary>
+            每月最大条数
+            </summary>
+        </member>
+        <member name="T:OpenSmsPlatform.Extensions.AufofacPropertityModuleReg">
+            <summary>
+            Autofac 属性注册
+            </summary>
+        </member>
+    </members>
+</doc>

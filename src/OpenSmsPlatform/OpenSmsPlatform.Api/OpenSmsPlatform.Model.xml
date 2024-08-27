@@ -1,0 +1,598 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OpenSmsPlatform.Model</name>
+    </assembly>
+    <members>
+        <member name="T:OpenSmsPlatform.Model.ApiResponse">
+            <summary>
+            Api响应
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.ApiResponse.Message">
+            <summary>
+            信息
+            </summary>
+        </member>
+        <member name="T:OpenSmsPlatform.Model.SmsRequest">
+            <summary>
+            短信请求对象
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.SmsRequest.Mobiles">
+            <summary>
+            手机号码
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.SmsRequest.Contents">
+            <summary>
+            短信内容
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.SmsRequest.Code">
+            <summary>
+            手机验证码
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.SmsRequest.SmsSuffix">
+            <summary>
+            短信签名
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.SmsRequest.AccId">
+            <summary>
+            账号id
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.SmsRequest.TimeStamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.SmsRequest.Signature">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.SmsRequest.RequestId">
+            <summary>
+            请求id（GUID）
+            </summary>
+        </member>
+        <member name="T:OpenSmsPlatform.Model.OspAccChargeVo">
+             <summary>
+             账号充值视图模型
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccChargeVo.AccId">
+             <summary>
+             账号id 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccChargeVo.Amount">
+             <summary>
+             金额 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccChargeVo.BeforeCounts">
+             <summary>
+             充值前条数 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccChargeVo.Counts">
+             <summary>
+             充值条数 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccChargeVo.AfterCounts">
+             <summary>
+             充值后条数 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccChargeVo.Remarks">
+             <summary>
+             备注 
+            </summary>
+        </member>
+        <member name="T:OpenSmsPlatform.Model.OspAccountVo">
+             <summary>
+             账号
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccountVo.AccName">
+             <summary>
+             账号名 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccountVo.AccId">
+             <summary>
+             账号id 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccountVo.SmsSuffix">
+             <summary>
+             短信后缀 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccountVo.AccCounts">
+             <summary>
+             短信余额 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccountVo.IsEnable">
+             <summary>
+             是否启用 1.是 2.否 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccountVo.Remarks">
+             <summary>
+             备注 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccountVo.ApiCode">
+             <summary>
+             api编码 
+            </summary>
+        </member>
+        <member name="T:OpenSmsPlatform.Model.OspApiVo">
+             <summary>
+             短信商API
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspApiVo.ApiCode">
+             <summary>
+             api通道编码 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspApiVo.ApiName">
+             <summary>
+             名称 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspApiVo.ApiUrl">
+             <summary>
+             Api地址 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspApiVo.IsEnabled">
+             <summary>
+             是否启用 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspApiVo.Remarks">
+             <summary>
+             备注 
+            </summary>
+        </member>
+        <member name="T:OpenSmsPlatform.Model.OspLimitVo">
+             <summary>
+             限制（黑/白名单）
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspLimitVo.AddType">
+             <summary>
+             添加类型 1.手动 2.自动 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspLimitVo.Mobile">
+             <summary>
+             手机号码 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspLimitVo.LimitType">
+             <summary>
+             限制类型 1.白名单 2.黑名单 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspLimitVo.Remarks">
+             <summary>
+             备注 
+            </summary>
+        </member>
+        <member name="T:OpenSmsPlatform.Model.OspRecordVo">
+             <summary>
+             短信记录
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspRecordVo.AccId">
+             <summary>
+             账号id 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspRecordVo.Mobile">
+             <summary>
+             手机号 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspRecordVo.Content">
+             <summary>
+             内容 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspRecordVo.Code">
+             <summary>
+             验证码 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspRecordVo.IsCode">
+             <summary>
+             是否为验证码 1.是 2.否 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspRecordVo.IsUsed">
+             <summary>
+             验证码是否使用  1.是 2.否 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspRecordVo.SendOn">
+             <summary>
+             发送时间 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspRecordVo.Counts">
+             <summary>
+             计费条数 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspRecordVo.RequestId">
+             <summary>
+             请求id 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspRecordVo.ApiCode">
+             <summary>
+             api编码 
+            </summary>
+        </member>
+        <member name="T:OpenSmsPlatform.Model.OspAccCharge">
+             <summary>
+             账号充值
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccCharge.AccId">
+             <summary>
+             账号id 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccCharge.Amount">
+             <summary>
+             金额 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccCharge.BeforeCounts">
+             <summary>
+             充值前条数 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccCharge.Counts">
+             <summary>
+             充值条数 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccCharge.AfterCounts">
+             <summary>
+             充值后条数 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccCharge.Remarks">
+             <summary>
+             备注 
+            </summary>
+        </member>
+        <member name="T:OpenSmsPlatform.Model.OspAccount">
+             <summary>
+             账号
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccount.AccName">
+             <summary>
+             账号名 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccount.AccId">
+             <summary>
+             账号id 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccount.AccKey">
+             <summary>
+             key 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccount.AccSecret">
+             <summary>
+             secret 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccount.SmsSuffix">
+             <summary>
+             短信后缀 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccount.AccCounts">
+             <summary>
+             短信余额 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccount.IsEnable">
+             <summary>
+             是否启用 1.是 2.否 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccount.Remarks">
+             <summary>
+             备注 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspAccount.ApiCode">
+             <summary>
+             api编码 
+            </summary>
+        </member>
+        <member name="T:OpenSmsPlatform.Model.OspApi">
+             <summary>
+             短信商API
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspApi.ApiCode">
+             <summary>
+             api通道编码 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspApi.ApiName">
+             <summary>
+             名称 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspApi.ApiUrl">
+             <summary>
+             Api地址 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspApi.IsEnabled">
+             <summary>
+             是否启用 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspApi.Remarks">
+             <summary>
+             备注 
+            </summary>
+        </member>
+        <member name="T:OpenSmsPlatform.Model.OspLimit">
+             <summary>
+             限制（黑/白名单）
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspLimit.AddType">
+             <summary>
+             添加类型 1.手动 2.自动 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspLimit.Mobile">
+             <summary>
+             手机号码 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspLimit.LimitType">
+             <summary>
+             限制类型 1.白名单 2.黑名单 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspLimit.Remarks">
+             <summary>
+             备注 
+            </summary>
+        </member>
+        <member name="T:OpenSmsPlatform.Model.OspRecord">
+             <summary>
+             短信记录
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspRecord.AccId">
+             <summary>
+             账号id 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspRecord.Mobile">
+             <summary>
+             手机号 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspRecord.Content">
+             <summary>
+             内容 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspRecord.Code">
+             <summary>
+             验证码 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspRecord.IsCode">
+             <summary>
+             是否为验证码 1.是 2.否 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspRecord.IsUsed">
+             <summary>
+             验证码是否使用  1.是 2.否 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspRecord.SendOn">
+             <summary>
+             发送时间 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspRecord.Counts">
+             <summary>
+             计费条数 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspRecord.ApiCode">
+             <summary>
+             api编码 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspRecord.RequestId">
+             <summary>
+             请求id 
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.OspRecord.RequestIp">
+             <summary>
+             请求IP
+            </summary>
+        </member>
+        <member name="T:OpenSmsPlatform.Model.PageModel`1">
+            <summary>
+            通用分页信息类
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.PageModel`1.page">
+            <summary>
+            当前页标
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.PageModel`1.pageCount">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.PageModel`1.dataCount">
+            <summary>
+            数据总数
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.PageModel`1.PageSize">
+            <summary>
+            每页大小
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.PageModel`1.data">
+            <summary>
+            返回数据
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.RootEntityTkey`1.Id">
+            <summary>
+            (泛型)主键
+            </summary>
+        </member>
+        <member name="T:OpenSmsPlatform.Model.SysTenant">
+            <summary>
+            系统租户表 <br/>
+            根据TenantType 分为两种方案: <br/>
+            1.按租户字段区分<br/>
+            2.按租户分库<br/>
+            
+            <br/>
+            
+            注意:<br/>
+            使用租户Id方案,无需配置分库的连接
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.SysTenant.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.SysTenant.TenantType">
+            <summary>
+            租户类型
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.SysTenant.ConfigId">
+            <summary>
+            数据库/租户标识 不可重复<br/>
+            使用Id方案,可无需配置
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.SysTenant.Host">
+            <summary>
+            主机<br/>
+            使用Id方案,可无需配置
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.SysTenant.DbType">
+            <summary>
+            数据库类型<br/>
+            使用Id方案,可无需配置
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.SysTenant.Connection">
+            <summary>
+            数据库连接<br/>
+            使用Id方案,可无需配置
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.SysTenant.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.SysTenant.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:OpenSmsPlatform.Model.Tenants.BusinessTable">
+            <summary>
+            业务数据 <br/>
+            多租户 (Id 隔离)
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.Tenants.BusinessTable.TenantId">
+            <summary>
+            无需手动赋值
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.Tenants.BusinessTable.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.Tenants.BusinessTable.Amount">
+            <summary>
+            金额
+            </summary>
+        </member>
+        <member name="T:OpenSmsPlatform.Model.Tenants.ITenantEntity">
+            <summary>
+            租户模型接口
+            </summary>
+        </member>
+        <member name="P:OpenSmsPlatform.Model.Tenants.ITenantEntity.TenantId">
+            <summary>
+            租户Id
+            </summary>
+        </member>
+        <member name="T:OpenSmsPlatform.Model.Tenants.MultiTenantAttribute">
+            <summary>
+            标识 多租户 的业务表 <br/>
+            默认设置是多库       <br/>
+            公共表无需区分 直接使用主库 各自业务在各自库中 <br/>
+            </summary>
+        </member>
+        <member name="T:OpenSmsPlatform.Model.Tenants.TenantTypeEnum">
+            <summary>
+            租户隔离方案
+            </summary>
+        </member>
+        <member name="F:OpenSmsPlatform.Model.Tenants.TenantTypeEnum.Id">
+            <summary>
+            Id隔离
+            </summary>
+        </member>
+        <member name="F:OpenSmsPlatform.Model.Tenants.TenantTypeEnum.Db">
+            <summary>
+            库隔离
+            </summary>
+        </member>
+        <member name="F:OpenSmsPlatform.Model.Tenants.TenantTypeEnum.Tables">
+            <summary>
+            表隔离
+            </summary>
+        </member>
+    </members>
+</doc>
