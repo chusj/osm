@@ -18,6 +18,11 @@ namespace OpenSmsPlatform.Api.Controllers
             _accountService = accountService;
         }
 
+        /// <summary>
+        /// 获取账号
+        /// </summary>
+        /// <param name="name">名称</param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<List<OspAccount>> GetAccount(string name)
         {
@@ -38,6 +43,13 @@ namespace OpenSmsPlatform.Api.Controllers
             return tempList;
         }
 
+        /// <summary>
+        /// 添加账号
+        /// </summary>
+        /// <param name="name">名称</param>
+        /// <param name="smsSuffix">短信后缀</param>
+        /// <param name="remarks">备注</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<OspAccount> AddAccount(string name, string smsSuffix,string remarks)
         {

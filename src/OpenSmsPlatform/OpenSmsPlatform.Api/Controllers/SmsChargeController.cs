@@ -24,6 +24,11 @@ namespace OpenSmsPlatform.Api.Controllers
             _unitOfWorkManage = unitOfWorkManage;
         }
 
+        /// <summary>
+        /// 获取充值
+        /// </summary>
+        /// <param name="accId">账号id</param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<List<OspAccCharge>> GetCharge(string accId)
         {
@@ -39,6 +44,13 @@ namespace OpenSmsPlatform.Api.Controllers
             return await _chargeService.Query(whereExpression, 10, "create_on desc");
         }
 
+        /// <summary>
+        /// 添加充值
+        /// </summary>
+        /// <param name="accId">账号id</param>
+        /// <param name="amount">充值金额</param>
+        /// <param name="remarks">充值备注，可为空</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<string> AddCharge(string accId, int amount, string remarks)
         {

@@ -5,16 +5,18 @@ using OpenSmsPlatform.Model;
 
 namespace OpenSmsPlatform.Api.Controllers
 {
+    /// <summary>
+    /// 测试控制器
+    /// </summary>
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class TestController : ControllerBase
     {
-        [HttpGet]
-        public string Index()
-        {
-            return "Hello World !";
-        }
-
+        /// <summary>
+        /// 创建请求对象
+        /// </summary>
+        /// <param name="mobile">手机号码</param>
+        /// <returns>返回发送短信时需要SmsRequest的JSON字符串</returns>
         [HttpPost]
         public string CreateRequestObj(string mobile)
         {
@@ -32,6 +34,10 @@ namespace OpenSmsPlatform.Api.Controllers
             return JsonConvert.SerializeObject(smsRequest);
         }
 
+        /// <summary>
+        /// 随机验证码4位
+        /// </summary>
+        /// <returns></returns>
         private int RandomCode()
         {
             Random random = new Random();
@@ -41,7 +47,7 @@ namespace OpenSmsPlatform.Api.Controllers
         /// <summary>
         /// 创建签名
         /// </summary>
-        /// <returns></returns>
+        /// <returns>返回签名</returns>
         private string CreateSignature(SmsRequest request)
         {
             string AccKey = "1724397308415";

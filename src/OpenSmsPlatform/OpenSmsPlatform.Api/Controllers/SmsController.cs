@@ -11,6 +11,9 @@ using SmsPackage.Service;
 
 namespace OpenSmsPlatform.Api.Controllers
 {
+    /// <summary>
+    /// 短信控制器（主接口）
+    /// </summary>
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class SmsController : ControllerBase
@@ -60,6 +63,11 @@ namespace OpenSmsPlatform.Api.Controllers
             _lianluService = serviceProvider.GetService<ILianluService>();
         }
 
+        /// <summary>
+        /// 发送短信
+        /// </summary>
+        /// <param name="request">短信请求对象</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ApiResponse> SendAsync([FromBody] SmsRequest request)
         {

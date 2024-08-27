@@ -5,6 +5,9 @@ using OpenSmsPlatform.Service;
 
 namespace OpenSmsPlatform.Api.Controllers
 {
+    /// <summary>
+    /// 短信限制控制器
+    /// </summary>
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class SmsLimitController : Controller
@@ -19,6 +22,13 @@ namespace OpenSmsPlatform.Api.Controllers
             _ospLimitService = ospLimitService;
         }
 
+        /// <summary>
+        /// 添加限制
+        /// </summary>
+        /// <param name="mobile">手机号码</param>
+        /// <param name="limitType">限制类型：true 白名单的;false 黑名单</param>
+        /// <param name="remark">备注</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<OspLimit> AddLimit(string mobile, bool limitType, string remark)
         {

@@ -15,6 +15,14 @@ namespace OpenSmsPlatform.Api.Controllers
             _apiService = apiService;
         }
 
+        /// <summary>
+        /// 添加Api
+        /// </summary>
+        /// <param name="code">编码</param>
+        /// <param name="name">名称</param>
+        /// <param name="url">url</param>
+        /// <param name="remark">备注</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<OspApi> AddApi(string code,string name,string url,string remark) 
         {
@@ -31,6 +39,10 @@ namespace OpenSmsPlatform.Api.Controllers
             return await _apiService.Add(api);
         }
 
+        /// <summary>
+        /// 获取API
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<List<OspApiVo>> GetApi()
         {
