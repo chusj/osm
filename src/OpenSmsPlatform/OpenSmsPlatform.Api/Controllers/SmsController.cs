@@ -295,8 +295,8 @@ namespace OpenSmsPlatform.Api.Controllers
                 if (smsLimit.Enabled)
                 {
                     PageModel<OspRecord> page = await _recordService.QueryMonthlyRecords(mobile, DateTime.Now, smsLimit.MonthMaxCount, smsType);
+                    var todaySendList = page.data.Where(x => x.CreateOn.Date == DateTime.Today).ToList();
 
-                    var todaySendList = page.data.Where(x => x.CreateOn == DateTime.Today).ToList();
                     if (page.dataCount >= smsLimit.MonthMaxCount)
                     {
                         resultTurple.enable = false;
@@ -307,7 +307,6 @@ namespace OpenSmsPlatform.Api.Controllers
                         resultTurple.enable = false;
                         resultTurple.msg = "达到当日发送最大值";
                     }
-                    Console.WriteLine($"{mobile}当日发送短信量：{todaySendList.Count()}");
                 }
             }
             else if (ospLimit.LimitType == 2) //黑名单

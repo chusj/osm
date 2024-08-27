@@ -18,6 +18,16 @@ namespace OpenSmsPlatform.Extensions
 
             CreateMap<OspAccount, OspAccountVo>();
             CreateMap<OspAccountVo, OspAccount>();
+
+            CreateMap<OspAccCharge, OspAccChargeVo>();
+            CreateMap<OspAccChargeVo, OspAccCharge>();
+
+            CreateMap<OspRecord, OspRecordVo>();
+            CreateMap<OspRecordVo, OspRecord>();
+
+            CreateMap<OspLimit, OspLimitVo>();
+            CreateMap<OspLimitVo, OspLimit>();
+
         }
     }
 }
