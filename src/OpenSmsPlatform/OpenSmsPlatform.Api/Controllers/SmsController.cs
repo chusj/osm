@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using IdGen;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using OpenSmsPlatform.Common;
 using OpenSmsPlatform.Common.Helper;
 using OpenSmsPlatform.IService;
@@ -110,12 +112,14 @@ namespace OpenSmsPlatform.Api.Controllers
                     response.Code = lianLuResponse.Code;
                     response.Message = lianLuResponse.Message;
                 }
-                else
+                else if (OspAccount.ApiCode == "zhutong")
                 {
                     ZhuTongApiResponse zhutongResponse = await _zhutongService.Send(request.Mobiles, request.Contents);
                     response.Code = zhutongResponse.Code;
                     response.Message = zhutongResponse.Message;
                 }
+                else { response.Code = 200; } //本地测试，不实际发送，只走业务
+
 
                 if (response.Code == 200)
                 {
@@ -239,11 +243,14 @@ namespace OpenSmsPlatform.Api.Controllers
         /// <returns></returns>
         private List<OspRecord> AppendList(SmsRequest request, OspAccount account)
         {
+            var generator = new IdGenerator(0);
             string ip = IpHelper.GetIp(_httpContext);
             List<OspRecord> list = new List<OspRecord>();
             foreach (var mobile in request.Mobiles)
             {
                 OspRecord record = new OspRecord();
+
+                record.Id = generator.CreateId();
                 record.AccId = account.Id;
                 record.Mobile = mobile;
                 record.Content = request.Contents;
@@ -257,8 +264,7 @@ namespace OpenSmsPlatform.Api.Controllers
                 record.CreateOn = DateTime.Now;
                 record.CreateBy = "admin";
                 record.CreateUid = 0;
-
-                //record.Ip = ip;
+                record.RequestId = ip;
 
                 list.Add(record);
             }
@@ -289,16 +295,19 @@ namespace OpenSmsPlatform.Api.Controllers
                 if (smsLimit.Enabled)
                 {
                     PageModel<OspRecord> page = await _recordService.QueryMonthlyRecords(mobile, DateTime.Now, smsLimit.MonthMaxCount, smsType);
-                    if (smsLimit.MonthMaxCount >= page.dataCount)
+
+                    var todaySendList = page.data.Where(x => x.CreateOn == DateTime.Today).ToList();
+                    if (page.dataCount >= smsLimit.MonthMaxCount)
                     {
                         resultTurple.enable = false;
                         resultTurple.msg = "达到当月发送最大值";
                     }
-                    else if (smsLimit.DayMaxCount >= page.data.Count(x => x.CreateOn == DateTime.Today))
+                    else if (todaySendList.Count() >= smsLimit.DayMaxCount)
                     {
                         resultTurple.enable = false;
                         resultTurple.msg = "达到当日发送最大值";
                     }
+                    Console.WriteLine($"{mobile}当日发送短信量：{todaySendList.Count()}");
                 }
             }
             else if (ospLimit.LimitType == 2) //黑名单

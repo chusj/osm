@@ -9,6 +9,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="IdGen" Version="3.0.7" />
 		<PackageReference Include="smsapi.lianlu" Version="1.0.0" />
 		<PackageReference Include="smsapi.zhutong" Version="1.0.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
