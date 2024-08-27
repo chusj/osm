@@ -20,8 +20,8 @@ namespace OpenSmsPlatform.Api.Controllers
         {
             SmsRequest smsRequest = new SmsRequest();
             smsRequest.Mobiles = new List<string> { mobile };
-            smsRequest.Contents = "您的验证码：234442，为了您的信息安全，请不要转发验证码。【杭州希和】";
-            smsRequest.Code = "234442";
+            smsRequest.Code = RandomCode().ToString();
+            smsRequest.Contents = $"您的验证码：{ smsRequest.Code}，为了您的信息安全，请不要转发验证码。【杭州希和】";
             smsRequest.SmsSuffix = "【杭州希和】";
             smsRequest.AccId = "1724397308";
             smsRequest.TimeStamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
@@ -30,6 +30,12 @@ namespace OpenSmsPlatform.Api.Controllers
             smsRequest.Signature = CreateSignature(smsRequest);
 
             return JsonConvert.SerializeObject(smsRequest);
+        }
+
+        private int RandomCode()
+        {
+            Random random = new Random();
+            return random.Next(1000, 10000);
         }
 
         /// <summary>
