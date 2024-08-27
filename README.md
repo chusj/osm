@@ -26,7 +26,7 @@ INSERT INTO `osp_account` VALUES (1826880838734843904, 'xxx公司', '1724397308'
 
 6. 表设计截图
 
-![Local Image](../blob/master/doc/table-design.png)
+![Local Image](../master/doc/table-design.png)
 
 ### 运行
 1. 发布 OpenSmsPlatform.Api 站点，并部署到IIS上
