@@ -8,7 +8,7 @@ namespace OpenSmsPlatform.Model
     [SplitTable(SplitType.Month)] //按月分表 （自带分表支持 年、季、月、周、日）
     [SugarTable("osp_record_{year}{month}{day}")]
     //[SugarTable("osp_record")]
-    public class OspRecord:RootEntityTkey<long>
+    public class OspRecord : RootEntityTkey<long>
     {
         /// <summary>
         /// 账号id 
@@ -19,30 +19,31 @@ namespace OpenSmsPlatform.Model
         /// <summary>
         /// 手机号 
         ///</summary>
-        [SugarColumn(ColumnName = "mobile", IsNullable = false)]
+        [SugarColumn(ColumnName = "mobile", Length = 11, IsNullable = false)]
         public string Mobile { get; set; }
+
         /// <summary>
         /// 内容 
         ///</summary>
-        [SugarColumn(ColumnName = "content", IsNullable = false)]
+        [SugarColumn(ColumnName = "content", Length = 2000, IsNullable = false)]
         public string Content { get; set; }
 
         /// <summary>
         /// 验证码 
         ///</summary>
-        [SugarColumn(ColumnName = "code", IsNullable = false)]
+        [SugarColumn(ColumnName = "code", Length = 8, IsNullable = false)]
         public string Code { get; set; }
 
         /// <summary>
         /// 是否为验证码 1.是 2.否 
         ///</summary>
-        [SugarColumn(ColumnName = "is_code", IsNullable = false)]
+        [SugarColumn(ColumnName = "is_code", Length = 4, IsNullable = false)]
         public int IsCode { get; set; }
 
         /// <summary>
         /// 验证码是否使用  1.是 2.否 
         ///</summary>
-        [SugarColumn(ColumnName = "is_used", IsNullable = false)]
+        [SugarColumn(ColumnName = "is_used", Length = 4, IsNullable = false)]
         public int IsUsed { get; set; }
 
         /// <summary>
@@ -55,20 +56,26 @@ namespace OpenSmsPlatform.Model
         /// <summary>
         /// 计费条数 
         ///</summary>
-        [SugarColumn(ColumnName = "counts", IsNullable = false)]
+        [SugarColumn(ColumnName = "counts", Length = 4, IsNullable = false)]
         public int Counts { get; set; }
-
-        /// <summary>
-        /// 请求id 
-        ///</summary>
-        [SugarColumn(ColumnName = "request_id", IsNullable = false)]
-        public string RequestId { get; set; }
 
         /// <summary>
         /// api编码 
         ///</summary>
-        [SugarColumn(ColumnName = "api_code", IsNullable = false)]
+        [SugarColumn(ColumnName = "api_code", Length = 20, IsNullable = false)]
         public string ApiCode { get; set; }
+
+        /// <summary>
+        /// 请求id 
+        ///</summary>
+        [SugarColumn(ColumnName = "request_id", Length = 40, IsNullable = false)]
+        public string RequestId { get; set; }
+
+        /// <summary>
+        /// 请求IP
+        ///</summary>
+        [SugarColumn(ColumnName = "request_ip", Length = 40, IsNullable = true)]
+        public string RequestIp { get; set; }
 
         [SugarColumn(ColumnName = "create_on", IsNullable = false)]
         public DateTime CreateOn { get; set; }
@@ -76,16 +83,16 @@ namespace OpenSmsPlatform.Model
         [SugarColumn(ColumnName = "create_uid", IsNullable = false)]
         public long CreateUid { get; set; }
 
-        [SugarColumn(ColumnName = "create_by", IsNullable = false)]
+        [SugarColumn(ColumnName = "create_by", Length = 20, IsNullable = false)]
         public string CreateBy { get; set; }
 
-        [SugarColumn(ColumnName = "modify_on")]
+        [SugarColumn(ColumnName = "modify_on", IsNullable = true)]
         public DateTime? ModifyOn { get; set; }
 
-        [SugarColumn(ColumnName = "modify_uid")]
+        [SugarColumn(ColumnName = "modify_uid", IsNullable = true)]
         public long? ModifyUid { get; set; }
 
-        [SugarColumn(ColumnName = "modify_by")]
+        [SugarColumn(ColumnName = "modify_by", Length = 20, IsNullable = true)]
         public string ModifyBy { get; set; }
     }
 }
