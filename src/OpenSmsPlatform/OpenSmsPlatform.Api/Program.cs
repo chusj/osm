@@ -1,5 +1,6 @@
 
 using Autofac;
+using Autofac.Core;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -41,6 +42,24 @@ namespace OpenSmsPlatform
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            //助通短信配置
+            builder.Services.AddZhutongSendMessageApi(option =>
+            {
+                option.ApiUrl = AppSettings.App(new string[] { "ZhuTong", "ApiUrl" });
+                option.ApiPath = AppSettings.App(new string[] { "ZhuTong", "ApiPath" });
+                option.UserName = AppSettings.App(new string[] { "ZhuTong", "UserName" });
+                option.Password = AppSettings.App(new string[] { "ZhuTong", "Password" });
+            });
+            //链路短信配置
+            builder.Services.AddLianluSendMessageApi(option =>
+            {
+                option.ApiUrl = AppSettings.App(new string[] { "LianLu", "ApiUrl" });
+                option.ApiPath = AppSettings.App(new string[] { "LianLu", "ApiPath" });
+                option.MchId = AppSettings.App(new string[] { "LianLu", "MchId" });
+                option.AppId = AppSettings.App(new string[] { "LianLu", "AppId" });
+                option.AppKey = AppSettings.App(new string[] { "LianLu", "AppKey" });
+            });
+
             //映射
             builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
             AutoMapperConfig.RegisterMappings();
@@ -68,7 +87,7 @@ namespace OpenSmsPlatform
                                     //.WriteTo.Console()
                                     //.WriteTo.File(Path.Combine("Logs", "Api.seriLog.txt"));
                                     //输出到控制台
-                                    //.WriteToConsole()
+                                    .WriteToConsole()
                                     //将日志保存到文件中
                                     .WriteToFile();
 

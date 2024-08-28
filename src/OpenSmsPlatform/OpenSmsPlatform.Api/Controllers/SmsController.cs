@@ -29,6 +29,8 @@ namespace OpenSmsPlatform.Api.Controllers
         public SmsController(IOspAccountService accountService,
             IOspRecordService recordService,
             IOspLimitService limitService,
+            IZhutongService zhutongService,
+            ILianluService lianluService,
             IUnitOfWorkManage unitOfWorkManage,
             IHttpContextAccessor httpContext,
             IConfiguration config)
@@ -36,31 +38,10 @@ namespace OpenSmsPlatform.Api.Controllers
             _accountService = accountService;
             _recordService = recordService;
             _limitService = limitService;
+            _zhutongService = zhutongService;
+            _lianluService = lianluService;
             _unitOfWorkManage = unitOfWorkManage;
             _httpContext = httpContext;
-
-            #region 短信api的配置项
-            IServiceCollection services = new ServiceCollection();
-            services.AddZhutongSendMessageApi(option =>
-            {
-                option.ApiUrl = config.GetValue<string>("ZhuTong:ApiUrl");
-                option.ApiPath = config.GetValue<string>("ZhuTong:ApiPath");
-                option.UserName = config.GetValue<string>("ZhuTong:UserName");
-                option.Password = config.GetValue<string>("ZhuTong:Password");
-            });
-            services.AddLianluSendMessageApi(option =>
-            {
-                option.ApiUrl = config.GetValue<string>("LianLu:ApiUrl");
-                option.ApiPath = config.GetValue<string>("LianLu:ApiPath");
-                option.MchId = config.GetValue<string>("LianLu:MchId");
-                option.AppId = config.GetValue<string>("LianLu:AppId");
-                option.AppKey = config.GetValue<string>("LianLu:AppKey");
-            });
-            IServiceProvider serviceProvider = services.BuildServiceProvider();
-            #endregion
-
-            _zhutongService = serviceProvider.GetService<IZhutongService>();
-            _lianluService = serviceProvider.GetService<ILianluService>();
         }
 
         /// <summary>
