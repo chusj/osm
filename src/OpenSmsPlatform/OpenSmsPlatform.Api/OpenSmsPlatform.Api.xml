@@ -131,6 +131,20 @@
             <param name="remark">备注</param>
             <returns></returns>
         </member>
+        <member name="M:OpenSmsPlatform.Api.Controllers.SmsLimitController.EditLimit(OpenSmsPlatform.Model.OspLimit)">
+            <summary>
+            修改
+            </summary>
+            <param name="limit">账号实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenSmsPlatform.Api.Controllers.SmsLimitController.DeleteLimit(System.Int64)">
+            <summary>
+            删除
+            </summary>
+            <param name="id">id</param>
+            <returns></returns>
+        </member>
         <member name="T:OpenSmsPlatform.Api.Controllers.TestController">
             <summary>
             测试控制器

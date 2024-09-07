@@ -52,6 +52,57 @@ namespace OpenSmsPlatform.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="limit">账号实体</param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<ApiResponse> EditLimit([FromBody] OspLimit limit)
+        {
+            OspLimit ospLimit = await _limitService.QueryById(limit.Id);
+            if (ospLimit == null)
+            {
+                return new ApiResponse { Message = "要修改的纪录不存在" };
+            }
+
+            bool result = await _limitService.Update(limit);
+            if (result)
+            {
+                return new ApiResponse { Code = 200, Message = "修改成功" };
+            }
+            else
+            {
+                return new ApiResponse { Message = "修改失败" };
+            }
+        }
+
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns></returns>
+        [HttpDelete]
+        public async Task<ApiResponse> DeleteLimit(long id)
+        {
+            OspLimit ospLimit = await _limitService.QueryById(id);
+            if (ospLimit == null)
+            {
+                return new ApiResponse { Message = "要删除的纪录不存在" };
+            }
+
+
+            bool result = await _limitService.Delete(id);
+            if (result)
+            {
+                return new ApiResponse { Code = 200, Message = "删除成功" };
+            }
+            else
+            {
+                return new ApiResponse { Message = "删除失败" };
+            }
+        }
+
         [HttpGet]
         public async Task<List<OspLimitVo>> GetLimit()
         {
