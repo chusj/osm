@@ -23,7 +23,7 @@ namespace OpenSmsPlatform.Api.Controllers
         }
 
         /// <summary>
-        /// 添加限制
+        /// 添加
         /// </summary>
         /// <param name="mobile">手机号码</param>
         /// <param name="limitType">限制类型：true 白名单的;false 黑名单</param>

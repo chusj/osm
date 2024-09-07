@@ -16,7 +16,7 @@ namespace OpenSmsPlatform.Api.Controllers
         /// 创建请求对象
         /// </summary>
         /// <param name="mobile">手机号码</param>
-        /// <returns>返回发送短信时需要SmsRequest的JSON字符串</returns>
+        /// <returns></returns>
         [HttpPost]
         public string CreateRequestObj(string mobile)
         {

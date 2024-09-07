@@ -25,7 +25,7 @@ namespace OpenSmsPlatform.Api.Controllers
         }
 
         /// <summary>
-        /// 获取充值
+        /// 获取账号充值记录
         /// </summary>
         /// <param name="accId">账号id</param>
         /// <returns></returns>
@@ -45,7 +45,7 @@ namespace OpenSmsPlatform.Api.Controllers
         }
 
         /// <summary>
-        /// 添加充值
+        /// 添加
         /// </summary>
         /// <param name="accId">账号id</param>
         /// <param name="amount">充值金额</param>
