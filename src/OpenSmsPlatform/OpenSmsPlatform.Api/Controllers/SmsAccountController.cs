@@ -105,19 +105,19 @@ namespace OpenSmsPlatform.Api.Controllers
         /// <summary>
         /// 删除
         /// </summary>
-        /// <param name="accountId">账号id</param>
+        /// <param name="id">账号id</param>
         /// <returns></returns>
         [HttpDelete]
-        public async Task<ApiResponse> DeleteAccount(long accountId)
+        public async Task<ApiResponse> DeleteAccount(long id)
         {
-            OspAccount ospAccount = await _accountService.QueryById(accountId);
+            OspAccount ospAccount = await _accountService.QueryById(id);
             if (ospAccount == null)
             {
                 return new ApiResponse { Message = "要删除的纪录不存在" };
             }
 
 
-            bool result = await _accountService.Delete(accountId);
+            bool result = await _accountService.Delete(id);
             if (result)
             {
                 return new ApiResponse { Code = 200, Message = "删除成功" };
