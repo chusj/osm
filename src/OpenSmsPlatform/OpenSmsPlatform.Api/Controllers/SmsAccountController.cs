@@ -105,7 +105,7 @@ namespace OpenSmsPlatform.Api.Controllers
         /// <summary>
         /// 删除
         /// </summary>
-        /// <param name="id">账号id</param>
+        /// <param name="id">id</param>
         /// <returns></returns>
         [HttpDelete]
         public async Task<ApiResponse> DeleteAccount(long id)

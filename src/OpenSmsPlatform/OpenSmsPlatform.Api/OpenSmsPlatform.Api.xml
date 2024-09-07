@@ -31,7 +31,7 @@
             <summary>
             删除
             </summary>
-            <param name="accountId">账号id</param>
+            <param name="id">id</param>
             <returns></returns>
         </member>
         <member name="M:OpenSmsPlatform.Api.Controllers.SmsApiController.AddApi(System.String,System.String,System.String,System.String)">
@@ -42,6 +42,20 @@
             <param name="name">名称</param>
             <param name="url">url</param>
             <param name="remark">备注</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenSmsPlatform.Api.Controllers.SmsApiController.EditAccount(OpenSmsPlatform.Model.OspApi)">
+            <summary>
+            修改
+            </summary>
+            <param name="api">api实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenSmsPlatform.Api.Controllers.SmsApiController.DeleteAccount(System.Int64)">
+            <summary>
+            删除
+            </summary>
+            <param name="id">id</param>
             <returns></returns>
         </member>
         <member name="M:OpenSmsPlatform.Api.Controllers.SmsApiController.GetApi">
