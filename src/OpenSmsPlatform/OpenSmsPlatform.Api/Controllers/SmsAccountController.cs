@@ -4,6 +4,7 @@ using OpenSmsPlatform.IService;
 using OpenSmsPlatform.Model;
 using Serilog;
 using System.Linq.Expressions;
+using System.Security.Principal;
 
 namespace OpenSmsPlatform.Api.Controllers
 {
@@ -98,6 +99,32 @@ namespace OpenSmsPlatform.Api.Controllers
             else
             {
                 return new ApiResponse { Message = "修改失败" };
+            }
+        }
+
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="accountId">账号id</param>
+        /// <returns></returns>
+        [HttpDelete]
+        public async Task<ApiResponse> DeleteAccount(long accountId)
+        {
+            OspAccount ospAccount = await _accountService.QueryById(accountId);
+            if (ospAccount == null)
+            {
+                return new ApiResponse { Message = "要删除的纪录不存在" };
+            }
+
+
+            bool result = await _accountService.Delete(accountId);
+            if (result)
+            {
+                return new ApiResponse { Code = 200, Message = "删除成功" };
+            }
+            else
+            {
+                return new ApiResponse { Message = "删除失败" };
             }
         }
     }

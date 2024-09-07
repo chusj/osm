@@ -27,6 +27,13 @@
             <param name="account">账号实体</param>
             <returns></returns>
         </member>
+        <member name="M:OpenSmsPlatform.Api.Controllers.SmsAccountController.DeleteAccount(System.Int64)">
+            <summary>
+            删除
+            </summary>
+            <param name="accountId">账号id</param>
+            <returns></returns>
+        </member>
         <member name="M:OpenSmsPlatform.Api.Controllers.SmsApiController.AddApi(System.String,System.String,System.String,System.String)">
             <summary>
             添加Api
