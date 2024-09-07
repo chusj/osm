@@ -13,11 +13,18 @@
         </member>
         <member name="M:OpenSmsPlatform.Api.Controllers.SmsAccountController.AddAccount(System.String,System.String,System.String)">
             <summary>
-            添加账号
+            添加
             </summary>
             <param name="name">名称</param>
             <param name="smsSuffix">短信后缀</param>
             <param name="remarks">备注</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenSmsPlatform.Api.Controllers.SmsAccountController.EditAccount(OpenSmsPlatform.Model.OspAccount)">
+            <summary>
+            修改
+            </summary>
+            <param name="account">账号实体</param>
             <returns></returns>
         </member>
         <member name="M:OpenSmsPlatform.Api.Controllers.SmsApiController.AddApi(System.String,System.String,System.String,System.String)">

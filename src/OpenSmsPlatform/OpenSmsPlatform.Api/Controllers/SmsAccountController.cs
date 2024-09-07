@@ -44,7 +44,7 @@ namespace OpenSmsPlatform.Api.Controllers
         }
 
         /// <summary>
-        /// 添加账号
+        /// 添加
         /// </summary>
         /// <param name="name">名称</param>
         /// <param name="smsSuffix">短信后缀</param>
@@ -74,6 +74,31 @@ namespace OpenSmsPlatform.Api.Controllers
             account.ApiCode = "lianlu";
 
             return await _accountService.Add(account);
+        }
+
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="account">账号实体</param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<ApiResponse> EditAccount([FromBody] OspAccount account)
+        {
+            OspAccount ospAccount =  await _accountService.QueryById(account.Id);
+            if(ospAccount == null)
+            {
+                return new ApiResponse { Message = "要修改的纪录不存在" };
+            }
+
+            bool result =  await _accountService.Update(account);
+            if (result)
+            {
+                return new ApiResponse { Code = 200, Message = "修改成功" };
+            }
+            else
+            {
+                return new ApiResponse { Message = "修改失败" };
+            }
         }
     }
 }
