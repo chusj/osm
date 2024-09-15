@@ -9,6 +9,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+OpenSmsPlatform.Api.xml
+OpenSmsPlatform.Model.xml
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
